@@ -1,0 +1,104 @@
+img.close{
+	margin-left:580px;
+	margin-top:0px;
+}
+
+#addfruit{
+	font-size:22px;
+}
+
+#explain,#window{
+	background:#FFF;
+	padding-bottom:30px;
+	padding-left:30px;
+	padding-right:30px;
+	width:600px;
+	filter:progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,strength=4);/*ie*/
+	-moz-box-shadow: 4px 4px 10px #909090;/*firefox*/
+	-webkit-box-shadow: 4px 4px 10px #909090;/*safari或chrome*/
+	box-shadow:4px 4px 10px #909090;/*opera或ie9*/
+	position:absolute;
+	z-index:100;
+	left:200px;
+	top:100px;
+	display: none;
+    //position: fixed;
+    _position: absolute;
+	
+}
+
+#window th{
+	text-shadow:none;
+	padding-right:20px;
+	text-align:left;
+}
+
+#window tbody tr td{
+	width:110px;
+	padding-left:5px;
+	
+}
+
+
+.sa,.ss {
+	padding-left:7px;
+	padding-right:7px;
+	padding-top:2px;
+	padding-bottom:2px;
+}
+.quantity input {
+	width:20px;
+}
+
+/* 弹出代码 */
+#backgroundPopup{
+            display: none;
+            position: fixed;
+            _position: absolute;
+            height: 1400px;
+            width: 100%;
+            top: 0px;
+            left: 0px;
+            background: #cccccc;
+            border: 1px solid #cecece;
+            z-index: 1;
+}
+
+        
+#sub{           
+            position: absolute;   
+            display: block;
+}
+
+.alt {
+	background:rgba(0,0,0,0.1);
+}
+.alt1 {
+	background:rgb(255,255,255);
+}
+
+.f table td{
+	background:rgba(0,0,0,0);
+}
+
+#explain h.pointstitle{
+	
+	font-size:18px;
+}
+
+#explain h2.pointsquestion{
+	font-size:14px;
+	font-weight:100;
+	color:#e17022;
+}
+
+#explain p{
+	font-weight:100;
+	font-size:10px;
+}
+#explain p.pointsfoot{
+	font-weight:100;
+	font-size:10px;
+	float:right;
+}
+

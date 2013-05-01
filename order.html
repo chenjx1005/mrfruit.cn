@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+
+<meta charset="UTF-8" >
+<script type="text/javascript" src="../static/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../static/js/window.js"></script>
+<!--newnew删掉<script type="text/javascript" src="../static/js/changeaddress.js"></script>-->
+<link rel="stylesheet" type="text/css" media="screen" href="../static/css/order.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="../static/css/window.css"/>
+
+
+<title>你可以订水果啦~</title>
+<body>
+
+<header>
+<div id="basicinfo">
+<form id="basic">
+	<fieldset>
+    	<table>
+			<!--  <thead><th>基本信息</th><th></th></thead>  -->
+        	<tbody>
+        		<tr>
+            		<td class="items">手机</td>
+                	<td>{{ session.phone }}</td>
+            	</tr>
+            	<tr>
+            		<td class="items">学号</td>
+                	<td>{{ session.stuid }}</td>
+            	</tr>
+                <tr>
+            		<td class="items">姓名</td>
+                	<td>{{ session.name }}</td>
+            	</tr>
+            	<tr>
+            		<td class="items">地址</td>
+					{% if session.campus=="yq" %}
+                	<td>玉泉{{ session.building }}{{ session.room }}</td>
+					{% elif session.campus=="zjg" %}
+					<td>紫金港{{ session.building }}{{ session.room }}</td>
+					{% endif %}
+            	</tr>
+         	</tbody>
+        </table>
+        <table class="infobtn">
+                <tr>
+                	<td><a href="{{url_for('edit')}} "><button class="info" id="tochange" type="button">修改资料</button></a></td>
+                	<td><a href="{{url_for('logout')}} "><button class="info" id="logout" type="button">退出登陆</button></a></td>
+                </tr>
+        	</tbody>
+		</table>
+        <table id="points">
+        	<tr>
+            	<td class="items">积分</td><td>{{ session.score }}个苹果</td>
+            </tr>
+        </table>
+        <table class="infobtn">
+                <tr>
+                	<td><button id="pointsbtn" class="info" type="button">怎么获得积分呢？</button></td>
+                </tr>
+        	</tbody>
+		</table>
+        <table class="btn">
+        		<tr>
+                	<td><a href="{{url_for('history')}}"><button type="button">历史订单查询</button></a></td>
+                </tr>
+                <tr>
+                	<td><a href="{{url_for('msg')}}"><button type="button">给水果君留言</button></a></td>
+                </tr>
+                <tr>
+                	<td><a href="{{ url_for('questions') }}"><button type="button">常见问题问答</button></a></td>
+                </tr>
+        	</tbody>
+		</table>
+	</fieldset>
+</form>
+</div>
+
+
+
+</header>
+
+
+<form>
+	<table id="guide">
+    	<!--  <thead><th >我的水果日历</th></thead>-->
+        <tbody>
+        	<!--<tr>
+				<td><button id="addsel" type="button">批量增加水果</button></td>
+          </tr>-->
+          	<tr><td>今天是：</td><td id="now"></td><td></td><td id="now2"></td></tr>
+            <tr></tr><!--newnew下面删了
+            <tr><td id="sorry">水果君的小说明：<br/><br/>前一天的中午12点之后，<br/><br/>您就无法修改该日的订单了哦~</td></tr>
+            <tr><td><br/><br/><br/></td></tr> 
+            <tr>
+            	<td id="totalall"></td>
+            </tr>
+            <tr><td><br/><br/></td></tr>
+            <tr>  这里！！！！！！！！！！！！！！！！！！！！！！！
+            	<td><button id="sure" type="button">确定了！提交订单~</button></td>-->
+            </tr> 
+        </tbody>
+	</table>
+
+</form>
+
+<section><form>
+	<table id="cal"><!--newnew这个table大改-->
+    	<thead><!--这里！！！！！！！！！！！！！！！！！-->
+        	<th colspan="5" id="cheers"></th>
+        </thead>
+        <tbody>
+    		<tr id="bas">
+        		<td id="basMon">
+                    	<ul>
+                        	<li>
+                    			<img class="basket" src="../static/images/basket.png">
+                        	</li>
+                            <li class="weekday">
+                    			<!--<input id="monday" name=cardtype type=checkbox>
+								<label for=monday></label>-->
+                        	</li>
+                            <li>
+                           	  <div class="orderdiv"><div class="arrow">
+                            		<img src="../static/images/arrow.png"></div>
+                            		<div class="orderlist"> 
+                                		<table>
+                                    		<tfoot></tfoot>
+                                    	</table>
+                                	</div>
+                                </div>
+                            </li>
+                            <li>
+							{%if show[0] ==1 %} 
+                    			<button class="add" id="addMon" type="button">增加水果</button>
+							{% endif %}
+                        	</li>
+                        </ul>
+                    
+                </td>
+                <td id="basTue">
+                    	<ul>
+                        	<li>
+                    			<img class="basket" src="../static/images/basket.png">
+                        	</li>
+                            <li class="weekday">
+                    			<!--<input id="monday" name=cardtype type=checkbox>
+								<label for=monday></label>-->
+                        	</li>
+                            <li>
+                           	  <div class="orderdiv"><div class="arrow">
+                            		<img src="../static/images/arrow.png"></div>
+                            		<div class="orderlist"> 
+                                		<table>
+                                    		<tfoot></tfoot>
+                                    	</table>
+                                	</div>
+                                </div>
+                            </li>
+                            <li>
+							{%if show[1] ==1 %} 
+                    			<button class="add" id="addTue" type="button">增加水果</button>
+							{% endif %}
+                        	</li>
+                        </ul>
+                    
+                </td>
+            	<td id="basWed">
+                	
+                    	<ul>
+                        	<li>
+                    			<img class="basket" src="../static/images/basket.png">
+                        	</li>
+                            <li class="weekday">
+                    			<!--<input id="wednesday" name=cardtype type=checkbox>
+								<label for=monday>周三<br/>12/12</label>-->
+                        	</li>
+                            <li>
+                            	<div class="orderdiv"><div class="arrow">
+                            		<img src="../static/images/arrow.png"></div>
+                            		<div class="orderlist"> 
+                                		<table>
+                                    		<tfoot></tfoot>
+                                    	</table>
+                                	</div>
+                                </div>
+                            </li>
+                            <li>
+							{%if show[2] ==1 %} 
+                    			<button class="add" id="addWed" type="button">增加水果</button>
+							{%endif%}
+                        	</li>
+                        </ul>
+                    
+                </td>
+                <td id="basThur">
+                    	<ul>
+                        	<li>
+                    			<img class="basket" src="../static/images/basket.png">
+                        	</li>
+                            <li class="weekday">
+                    			<!--<input id="monday" name=cardtype type=checkbox>
+								<label for=monday></label>-->
+                        	</li>
+                            <li>
+                           	  <div class="orderdiv"><div class="arrow">
+                            		<img src="../static/images/arrow.png"></div>
+                            		<div class="orderlist"> 
+                                		<table>
+                                    		<tfoot></tfoot>
+                                    	</table>
+                                	</div>
+                                </div>
+                            </li>
+                            <li>
+							{%if show[3] ==1 %} 
+                    			<button class="add" id="addThur" type="button">增加水果</button>
+							{%endif%}
+                        	</li>
+                        </ul>
+                    
+                </td>
+                <td id="basFri">
+                	
+                    	<ul>
+                        	<li>
+                    			<img class="basket" src="../static/images/basket.png">
+                        	</li>
+                            <li class="weekday">
+                    			<!--<input id="friday" name=cardtype type=checkbox>
+								<label for=monday>周五<br/>12/14</label>-->
+                        	</li>
+                            <li>
+                            	<div class="orderdiv"><div class="arrow">
+                            		<img src="../static/images/arrow.png"></div>
+                            		<div class="orderlist"> 
+                                		<table>
+                                    		<tfoot></tfoot>
+                                    	</table>
+                                	</div>
+                                </div>
+                            </li>
+                            <li>
+							{%if show[4] ==1 %} 
+                    			<button class="add" id="addFri" type="button">增加水果</button>
+							{%endif%}
+                        	</li>
+                        </ul>
+                   
+                </td>
+        	</tr>
+            
+            <tr><td colspan="5"><br/><br/><br/></td></tr><!-- 这里！！！！！！！！！！！！！！！！！-->
+            <tr>
+          <td colspan="5"></tr>
+        </tbody>
+        <tfoot><!-- 这里！！！！！！！！！！！！！！！！！-->
+        	<tr>
+            	<td colspan="5" id="info"></td>
+            </tr>
+        </tfoot>
+	</table> </form>
+</section>
+
+<div id="explain">
+	<img class="close" src="../static/images/close.png">
+	<p>现在是一毛钱=一个苹果哦</p>
+</div>
+
+<div id="window">
+<form method="POST" id="dif"><table id="list">
+    	<thead>
+        	<th id="addfruit">增加水果</th>
+            <th id="date" colspan="4"></th></thead>
+        <tbody>
+            <tr>
+                <td>&nbsp;</td>
+                <td>品种</td>
+                <td>单价</td>
+                <td>已选个数</td>
+                <td>小计</td>
+            </tr>
+	{% for i in row %}
+            <tr id="{{'f'+i[0]|string}}" class="f">
+                <td>&nbsp;</td>
+                <td class="item"></td>
+                <td class="price"></td>
+                <td>
+                	<table>
+                    	<tr>
+                        	<!--<td><button class="ss" type="button">-</button></td>--><!--圣诞写代码-->
+                            <td class="quantity"><input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" type=text name={{i[0]|string}} ></td>
+                            <!--<td><button class="sa" type="button">+</button></td>-->
+                        </tr>
+                    </table>
+                </td>
+                <td class="cost"></td>
+            </tr>
+	{% endfor %}
+
+            </tbody>
+            </table>
+    <table>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td id="Total"></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td><button id="sub" type=submit>提交</button></td>
+            </tr>  
+	</table></form>
+</div>    
+
+<div id="dailynews">
+	<table>
+    	<tr><td id="newstitle">今日水果新闻</td>
+        </tr>
+        <tr><td>芒果有营养芒果有营养芒果有营养芒果有营养芒果有营养芒果有营养芒果有营养芒果有营养芒果有营养芒果有营养芒果有营养芒果有营养芒果有营养芒果有营养芒果有营养芒果有营养芒果有营养芒果有营养</td>
+        </tr>
+    </table>
+</div>
+
+<div id="backgroundPopup"></div>  <!-- 背景-->
+
+<div id="record"> <!-- 真是蛋疼！！！！！！！--><!--newnew我忘记你那里有没有这个了-->
+<table id="RecMon">
+	<tbody>
+	{% for i in row%}
+	{% for j in row1 if i[0]==j[0]%}
+	<tr class="{{'Recf'+i[0]|string}}">
+    		<td class="RecI"></td>
+    		<td class="RecP"></td>
+        	<td class="RecQ">{{ j[1] }}</td>
+        	<td class="RecC">{{ j[1]*i[2]}}</td>
+   	</tr>
+	{%else%}
+	<tr class="{{'Recf'+i[0]|string}}">
+    		<td class="RecI"></td>
+    		<td class="RecP"></td>
+        	<td class="RecQ">0</td>
+        	<td class="RecC">0</td>
+   	</tr>
+	{% endfor %}
+	{% endfor %}
+
+
+    <tfoot class="total">
+    	<td colspan="4">{{price[0]}}</td>
+    </tfoot>
+</tbody></table>
+
+<table id="RecTue">
+	<tbody>
+	{% for i in row%}
+	{% for j in row2 if i[0]==j[0]%}
+	<tr class="{{'Recf'+i[0]|string}}">
+    		<td class="RecI"></td>
+    		<td class="RecP"></td>
+        	<td class="RecQ">{{ j[1] }}</td>
+        	<td class="RecC">{{ j[1]*i[2]}}</td>
+   	</tr>
+	{%else%}
+	<tr class="{{'Recf'+i[0]|string}}">
+    		<td class="RecI"></td>
+    		<td class="RecP"></td>
+        	<td class="RecQ">0</td>
+        	<td class="RecC">0</td>
+   	</tr>
+	{% endfor %}
+	{% endfor %}
+
+
+    <tfoot class="total">
+    	<td colspan="4">{{price[1]}}</td>
+    </tfoot>
+</tbody></table>
+
+<table id="RecWed">
+	<tbody>
+	{% for i in row%}
+	{% for j in row3 if i[0]==j[0]%}
+	<tr class="{{'Recf'+i[0]|string}}">
+    		<td class="RecI"></td>
+    		<td class="RecP"></td>
+        	<td class="RecQ">{{ j[1] }}</td>
+        	<td class="RecC">{{ j[1]*i[2]}}</td>
+   	</tr>
+	{%else%}
+	<tr class="{{'Recf'+i[0]|string}}">
+    		<td class="RecI"></td>
+    		<td class="RecP"></td>
+        	<td class="RecQ">0</td>
+        	<td class="RecC">0</td>
+   	</tr>
+	{% endfor %}
+	{% endfor %}
+    <tfoot class="total">
+    	<td colspan="4">{{price[2]}}</td>
+    </tfoot>
+</tbody></table>
+<table id="RecThur">
+	<tbody>
+	{% for i in row%}
+	{% for j in row4 if i[0]==j[0]%}
+	<tr class="{{'Recf'+i[0]|string}}">
+    		<td class="RecI"></td>
+    		<td class="RecP"></td>
+        	<td class="RecQ">{{ j[1] }}</td>
+        	<td class="RecC">{{ j[1]*i[2]}}</td>
+   	</tr>
+	{%else%}
+	<tr class="{{'Recf'+i[0]|string}}">
+    		<td class="RecI"></td>
+    		<td class="RecP"></td>
+        	<td class="RecQ">0</td>
+        	<td class="RecC">0</td>
+   	</tr>
+	{% endfor %}
+	{% endfor %}
+
+
+    <tfoot class="total">
+    	<td colspan="4">{{price[3]}}</td>
+    </tfoot>
+</tbody></table>
+
+<table id="RecFri">
+	<tbody>
+    {% for i in row%}
+	{% for j in row5 if i[0]==j[0]%}
+	<tr class="{{'Recf'+i[0]|string}}">
+    		<td class="RecI"></td>
+    		<td class="RecP"></td>
+        	<td class="RecQ">{{ j[1] }}</td>
+        	<td class="RecC">{{ j[1]*i[2]}}</td>
+   	</tr>
+	{%else%}
+	<tr class="{{'Recf'+i[0]|string}}">
+    		<td class="RecI"></td>
+    		<td class="RecP"></td>
+        	<td class="RecQ">0</td>
+        	<td class="RecC">0</td>
+   	</tr>
+	{% endfor %}
+	{% endfor %}
+    <tfoot class="total">
+    	<td colspan="4">{{price[4]}}</td>
+    </tfoot>
+</tbody>
+</table>
+
+
+</div>
+
+  
+<script>
+//初始化项目
+		{% for i in row %}	
+		$("{{'tr.Recf' + i[0]|string +' td.RecI'}}").text("{{i[1]}}");
+
+		
+		$("{{'tr.Recf'+i[0]|string +' td.RecP'}}").text("{{i[2]|string+'元'}}");
+	{% endfor%}
+		
+		$("div.orderdiv").css("display","none");
+		$("#record").css("display","none");
+		
+	  
+  
+
+</script>
+
+</body>

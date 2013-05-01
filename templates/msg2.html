@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<meta charset="UTF-8" >
+<style type="text/css" >
+html, body, h1, form, fieldset, legend, ol, li {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background:url("../static/images/bg.png");
+	background-repeat:no-repeat;
+	color: #111111;
+	font-family: Tahoma, Verdana, STHeiTi, simsun, sans-serif;
+	padding: 20px;
+}
+#da{
+	position:absolute;
+	margin-top:50px;
+	margin-left:400px;
+}
+#title{
+	color:#e17022;
+	font-size: 26px;
+	font-weight: bold;
+}
+form#payment {
+	padding: 20px;
+	
+}
+form#payment fieldset {
+	border: none;
+	margin-bottom: 10px;
+}
+
+
+form#payment textarea {
+	background: #ffffff;
+	border: none;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	font: italic 13px Georgia, "Times New Roman", Times, serif;
+	outline: none;
+	padding: 5px;
+	width: 300px;
+	height:200px;
+}
+
+
+form#payment textarea:focus {
+	background: #eeeeee;
+}
+
+form#payment button {
+	
+	background: #e17022;
+	border: none;
+	color: #ffffff;
+	display: block;
+	font: "黑体";
+	margin: auto;
+	padding: 7px 25px;
+	text-shadow: 0 1px 1px #cccccc;
+}
+form#payment button:hover {
+	background: #1e2506;
+	cursor: pointer;
+}
+
+p{
+	color: #999999;
+	font-size:10px;
+	
+}
+
+table tr td {
+	width: 100px;
+}
+#fruit{
+	color: #e17022;
+	text-decoration:none;
+	font-weight: bold;
+}
+
+
+
+</style>
+<title>注册才能吃水果哦~</title>
+<body>
+<div id="da">
+
+{% for message in get_flashed_messages() %}
+      			<div class=flash>{{message}}</div>
+    		{% endfor %}
+
+<p id="title">热爱水果君的亲：</p>
+
+
+<form id=payment action="{{ url_for('newmsg')}}" method="POST">
+	<fieldset>
+    	<p>
+        	这里的留言也许不会得到即时回复，<br/><br/>但是每一条反馈都将登记在案，<br/><br/>你的支持是水果君前进的不竭动力。<br/><br/><br/><br/>你还想吃什么其他的水果？<br/><br/>有什么话想对水果君说？<br/><br/>
+
+        </p>
+        <p>互动交流及更多信息<br/><br/>请关注人人公共主页：<br/><br/>（猛戳右边-->）<a id="fruit" href="http://page.renren.com/601612744/index">水果君</a>
+
+</p>
+    </fieldset>
+	<fieldset>
+		<textarea id="txt" name="txt" autofocus></textarea>
+	</fieldset>
+	<fieldset>
+    	<br/>
+        <br/>
+        <br/>
+        <table>
+        	<tr>
+            	<td></td>
+                <td><button type=submit>提交</button></td>
+                <td><a style="text-decoration:none" href="{{url_for('order')}}"><button type=button onclick="javascript:window.location.href='/'">返回</button></a></td>
+            </tr>
+        </table>
+	
+        
+	</fieldset>
+</form>
+</div>
+</body>

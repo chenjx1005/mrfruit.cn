@@ -1,0 +1,86 @@
+ * Running on http://0.0.0.0:5000/
+ * Restarting with reloader
+127.0.0.1 - - [27/Dec/2012 15:00:39] "GET /log HTTP/1.1" 200 -
+127.0.0.1 - - [27/Dec/2012 15:00:39] "GET /static/images/bg_log.png HTTP/1.1" 304 -
+127.0.0.1 - - [27/Dec/2012 15:00:39] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [27/Dec/2012 15:00:40] "GET /log HTTP/1.1" 200 -
+127.0.0.1 - - [27/Dec/2012 15:00:40] "GET /static/images/bg_log.png HTTP/1.1" 304 -
+127.0.0.1 - - [27/Dec/2012 15:00:40] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [27/Dec/2012 15:00:46] "GET /log HTTP/1.1" 200 -
+127.0.0.1 - - [27/Dec/2012 15:00:46] "GET /static/images/bg_log.png HTTP/1.1" 304 -
+127.0.0.1 - - [27/Dec/2012 15:00:46] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [27/Dec/2012 15:00:47] "GET /reg HTTP/1.1" 200 -
+127.0.0.1 - - [27/Dec/2012 15:00:47] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [27/Dec/2012 15:00:48] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [27/Dec/2012 15:34:41] "POST /log HTTP/1.1" 302 -
+127.0.0.1 - - [27/Dec/2012 15:34:41] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Dec/2012 15:34:41] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [27/Dec/2012 15:34:43] "GET /logout HTTP/1.1" 302 -
+127.0.0.1 - - [27/Dec/2012 15:34:43] "GET /log HTTP/1.1" 200 -
+127.0.0.1 - - [27/Dec/2012 15:34:43] "GET /favicon.ico HTTP/1.1" 404 -
+ * Running on http://0.0.0.0:5000/
+ * Restarting with reloader
+127.0.0.1 - - [27/Dec/2012 15:37:33] "GET /log HTTP/1.1" 200 -
+127.0.0.1 - - [27/Dec/2012 15:37:33] "GET /static/images/bg_log.png HTTP/1.1" 304 -
+127.0.0.1 - - [27/Dec/2012 15:37:33] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [27/Dec/2012 18:17:56] "GET /log HTTP/1.1" 200 -
+127.0.0.1 - - [27/Dec/2012 18:17:56] "GET /static/images/bg_log.png HTTP/1.1" 304 -
+127.0.0.1 - - [27/Dec/2012 18:17:56] "GET /favicon.ico HTTP/1.1" 404 -
+ * Detected change in 'fruit.py', reloading
+ * Restarting with reloader
+127.0.0.1 - - [27/Dec/2012 18:18:39] "GET /log HTTP/1.1" 200 -
+127.0.0.1 - - [27/Dec/2012 18:18:39] "GET /static/images/bg_log.png HTTP/1.1" 304 -
+127.0.0.1 - - [27/Dec/2012 18:18:39] "GET /favicon.ico HTTP/1.1" 404 -
+ * Detected change in 'fruit.py', reloading
+ * Restarting with reloader
+127.0.0.1 - - [27/Dec/2012 18:19:10] "GET /log HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/home/chen/env/lib/python2.7/site-packages/Flask-0.9-py2.7.egg/flask/app.py", line 1701, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/chen/env/lib/python2.7/site-packages/Flask-0.9-py2.7.egg/flask/app.py", line 1689, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/chen/env/lib/python2.7/site-packages/Flask-0.9-py2.7.egg/flask/app.py", line 1687, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/chen/env/lib/python2.7/site-packages/Flask-0.9-py2.7.egg/flask/app.py", line 1360, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/chen/env/lib/python2.7/site-packages/Flask-0.9-py2.7.egg/flask/app.py", line 1358, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/chen/env/lib/python2.7/site-packages/Flask-0.9-py2.7.egg/flask/app.py", line 1344, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/chen/fruit/fruit.py", line 60, in log
+    raise ValueError
+ValueError
+127.0.0.1 - - [27/Dec/2012 18:19:10] "GET /log?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Dec/2012 18:19:10] "GET /log?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+127.0.0.1 - - [27/Dec/2012 18:19:10] "GET /log?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+127.0.0.1 - - [27/Dec/2012 18:19:10] "GET /log?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+127.0.0.1 - - [27/Dec/2012 18:19:10] "GET /log?__debugger__=yes&cmd=resource&f=source.png HTTP/1.1" 200 -
+127.0.0.1 - - [27/Dec/2012 18:19:10] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [27/Dec/2012 18:19:24] "GET /log?__debugger__=yes&cmd=error&frm=3058729740&s=qGWpuVShk2HofVCvSJY9 HTTP/1.1" 200 -
+192.168.201.1 - - [27/Dec/2012 18:19:51] "GET / HTTP/1.1" 302 -
+192.168.201.1 - - [27/Dec/2012 18:19:51] "GET /log HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/home/chen/env/lib/python2.7/site-packages/Flask-0.9-py2.7.egg/flask/app.py", line 1701, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/chen/env/lib/python2.7/site-packages/Flask-0.9-py2.7.egg/flask/app.py", line 1689, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/chen/env/lib/python2.7/site-packages/Flask-0.9-py2.7.egg/flask/app.py", line 1687, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/chen/env/lib/python2.7/site-packages/Flask-0.9-py2.7.egg/flask/app.py", line 1360, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/chen/env/lib/python2.7/site-packages/Flask-0.9-py2.7.egg/flask/app.py", line 1358, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/chen/env/lib/python2.7/site-packages/Flask-0.9-py2.7.egg/flask/app.py", line 1344, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/chen/fruit/fruit.py", line 60, in log
+    raise ValueError
+ValueError
+192.168.201.1 - - [27/Dec/2012 18:19:51] "GET /log?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+192.168.201.1 - - [27/Dec/2012 18:19:51] "GET /log?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+192.168.201.1 - - [27/Dec/2012 18:19:51] "GET /log?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+192.168.201.1 - - [27/Dec/2012 18:19:51] "GET /log?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+192.168.201.1 - - [27/Dec/2012 18:19:51] "GET /log?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+192.168.201.1 - - [27/Dec/2012 18:19:51] "GET /log?__debugger__=yes&cmd=resource&f=source.png HTTP/1.1" 200 -
+192.168.201.1 - - [27/Dec/2012 18:19:51] "GET /favicon.ico HTTP/1.1" 404 -
+ * Detected change in 'fruit.py', reloading
+ * Restarting with reloader

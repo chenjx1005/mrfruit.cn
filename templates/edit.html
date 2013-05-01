@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="description" content="水果君,MrFruit" />
+		<meta name="keywords" content="水果君,MrFruit" />
+		<link rel="alternate" type="application/rss+xml" title="RSS 2.0 - all posts" href="http://mrfuit.com/feed/" />
+		<title>修改个人信息~</title>
+		<link rel="stylesheet" type="text/css" media="all" href="../static/css/reg.css" />
+		<link rel="shortcut icon" href="../static/favicon.ico">
+        <script type="text/javascript" src="../static/js/jquery-1.8.3.min.js"></script>
+        <script>
+			$(document).ready(function(){  
+				//初始化
+				option(1,4);
+				<!--3.13新改-->
+				$("select#address2").change(function(){
+					if($("select#address option:selected").val() == "zjg"){
+						switch($("select#address2 option:selected").val()){
+							case "青溪": 
+								option(1,4);
+								break;
+							case "丹阳": 
+								option(1,6);
+								break;
+							case "蓝田": 
+								option(1,6);
+								break;
+							case "紫云": 
+								option(1,5);
+								break;
+							case "碧峰": 
+								option(1,5);
+								break;
+							case "白沙": 
+								option(1,4);
+								break;
+							case "翠柏": 
+								option(1,4);
+								break;
+						}
+					}
+					
+					if($("select#address option:selected").val() == "xx"){
+						switch($("select#address2 option:selected").val()){
+							case "北园": 
+								option(15,20);
+								break;
+							case "南园": 
+								option(7,12);
+								break;
+							
+						}
+					}
+					
+					
+					});
+				
+				//几~几的函数
+				function option(i,j){
+					$("select#address22 option").each(function(){
+						$(this).remove();
+					 });
+					var k = i;
+					for(; k <= j; k++){
+						$("#address22").append("<option value='"+k+"'>"+k+"舍</option>");
+					}
+				}
+				
+				
+				
+				//玉泉紫金港，发生改变
+				$("select#address").change(function(){
+					
+					//如果切换到紫金港
+				if($("select#address option:selected").val() == "zjg"){
+					$("li#remove").css("display","block");
+					//变成青溪什么的选
+					$("select#address2").replaceWith("<select id=address2 name=address2  placeholder='青溪' required ><option value='青溪'>青溪</option><option value='丹阳'>丹阳</option><option value='蓝田'>蓝田</option><option value='紫云'>紫云</option><option value='碧峰f'>碧峰</option><option value='白沙'>白沙</option><option value='翠柏'>翠柏</option></select></li> ");
+					option(1,4);
+					//学园切换
+					$("select#address2").change(function(){
+					switch($("select#address2 option:selected").val()){
+						case "青溪": 
+								option(1,4);
+								break;
+							case "丹阳": 
+								option(1,6);
+								break;
+							case "蓝田": 
+								option(1,6);
+								break;
+							case "紫云": 
+								option(1,5);
+								break;
+							case "碧峰": 
+								option(1,5);
+								break;
+							case "白沙": 
+								option(1,4);
+								break;
+							case "翠柏": 
+								option(1,4);
+								break;
+					}
+					});
+				}
+				
+				if($("select#address option:selected").val() == "yq"){
+					
+					$("select#address2").replaceWith("<select id=address2 name=address2  placeholder='1舍' required ></select>");
+					$("li#remove").css("display","none");
+					$("select#address2 option").each(function(){
+						$(this).remove();
+					 });
+					for(j = 1; j <= 32; j++){
+						
+						$("#address2").append("<option value='"+j+"'>"+j+"舍</option>");
+					}
+				}
+				
+					
+					//如果切换到西溪
+				if($("select#address option:selected").val() == "xx"){
+					$("li#remove").css("display","block");
+					$("select#address2").replaceWith("<select id=address2 name=address2  placeholder='北园' required ><option value='北园'>北园</option><option value='南园'>南园</option></select></li> ");
+					option(15,20);
+					//学园切换
+					$("select#address2").change(function(){
+					switch($("select#address2 option:selected").val()){
+						case "北园": 
+							option(15,20);
+							break;
+						case "南园": 
+							option(7,12);
+							break;
+					}
+					});
+				}
+				
+				
+				
+				
+				
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div id="content">
+        	<div id="pic"><img src="../static/images/reg.png" /></div>
+        	<div id="reg_form">
+                <p id="title">Oh ，你想修改资料？</p>   
+                <form id="payment" action="" method='POST'>
+                    <fieldset>
+                        <legend>基本信息</legend>
+                        <ol>
+                            <li>
+                                <label for=email>常用邮箱</label>
+                                <input id="email" name=email type=email placeholder="我们会每周给您发送订单结算情况" required value="{{ session.mail }}">
+                            </li>
+                        </ol>
+                    </fieldset>
+                    <fieldset>
+                        <legend>配送信息</legend>
+                        <ol>
+                            <li>
+                                <label for=name>
+                                姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名
+                                </label>
+                                <input id=name name=name type=text placeholder="水小果" required value="{{ session.name }}">
+                            </li>
+                            <li>
+                                <label for=address>
+                                所在校区
+                                </label>
+                                <select id="address" name=address  placeholder="紫金港" required >
+                                    <option value="zjg">紫金港</option>
+                                    <option value="yq">玉泉</option>
+                                    <option value="xx">西溪</option>
+                                </select>
+                            </li>
+                            <li id="liforad2">
+                                <label for=address2 id="lableforad2">
+                                楼&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号
+                                </label>
+                                <select id=address2 name=address2 required >
+                                    <option value="青溪">青溪</option>
+                                    <option value="丹阳">丹阳</option>
+                                    <option value="蓝田">蓝田</option>
+                                    <option value="紫云">紫云</option>
+                                    <option value="碧峰">碧峰</option>
+                                    <option value="白沙">白沙</option>
+                                    <option value="翠柏">翠柏</option>
+                                </select>
+                            </li>
+                            <li id='remove'><label>&nbsp;</label><select id=address22 name=address22  placeholder='1舍' required ></select></li>
+                            <li>
+                                <label for=address3>
+                                房&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;间
+                                </label>
+                                <input id=address3 name=address3 type=text placeholder="123" required value="{{ session.room }}">
+                            </li>
+                        </ol>
+                    </fieldset>
+                    <fieldset>
+                        <button type=submit>ok，修改好了~</button>
+                    </fieldset>
+                </form>
+</div>
+        </div>
+	</body>
+</html>

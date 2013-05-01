@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="description" content="水果君,MrFruit" />
+		<meta name="keywords" content="水果君,MrFruit" />
+		<link rel="alternate" type="application/rss+xml" title="RSS 2.0 - all posts" href="http://mrfuit.com/feed/" />
+		<title>登陆吃水果咯~</title>
+		<link rel="stylesheet" type="text/css" media="all" href="../static/css/log.css" />
+		<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+	</head>
+	<body>
+		<div id="content">
+        	<div id="log_form">
+			<form id=payment action="" method=post>
+			{% if error %}<p class=error><strong>出错了:</strong> {{ error }}{% endif %}
+    		{% for message in get_flashed_messages() %}
+      			<div class=flash>{{message}}</div>
+    		{% endfor %}
+                <ol>
+					支付宝测试用帐号：手机18768114204 学号000123 
+                    <li>
+                        <label for=phone>手机号码</label>
+                        <input id=phone name=phone type=tel placeholder="建议使用短号哦亲~" required autofocus  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+                    </li>
+                    <li>
+                        <label for=email>学号</label>
+                        <input id=stuid name=stuid type=text placeholder="学号是你的唯一标识哦~" required  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+                    </li>
+                </ol>
+           
+                <ol id="btn">
+                    <li>
+                        <button type=submit>登陆！我要吃水果</button>
+                    </li> 
+                    <li>
+                        <button onclick="javascript:window.location.href='/reg'" type="button">注册！我想认识水果君</button>
+                    </li>
+                </ol>
+				</form>
+        	</div>
+        </div>
+	</body>
+</html>

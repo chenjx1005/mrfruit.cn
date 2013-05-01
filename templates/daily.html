@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<meta charset="UTF-8" >
+<style type="text/css" >
+html, body, h1, form, fieldset, legend, ol, li {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background:url("img/smallbg.png");
+	background-repeat:no-repeat;
+	color: #111111;
+	font-family:Tahoma, Verdana, STHeiTi, simsun, sans-serif;
+	padding: 20px;
+}
+#da{
+	position:absolute;
+	margin-top:50px;
+	margin-left:200px;
+	width:300px;
+}
+#title{
+	color:#e17022;
+	font-size: 26px;
+	font-weight: bold;
+}
+#end{
+	color:#e17022;
+	font-size: 16px;
+	font-weight: bold;
+}
+thead th{
+	color:#e17022;
+	font-size: 16px;
+	font-weight: bold;
+}
+form#payment {
+	padding: 20px;
+	
+}
+form#payment fieldset {
+	border: none;
+	margin-bottom: 10px;
+}
+
+
+p{
+	color: #999999;
+	font-size:10px;
+	
+}
+
+table{
+	text-align:left;
+}
+
+table tr td {
+	width: 50px;
+	
+}
+
+.x{
+	width:20px;
+}
+
+
+</style>
+<title>等着吃水果吧！</title>
+<body>
+<div id="da">
+
+
+<p id="title">热爱水果君的亲，<br/><br/>你好。</p>
+
+
+<form id=payment>
+<fieldset>
+    	<p>
+        	你预定的水果现在已经被我从远方召唤而来，<br/><br/>正兴奋的等待明天在宿舍楼下与你相遇。<br/><br/><br/>希望你能喜欢它。
+        </p>
+    </fieldset>
+	<fieldset>
+    	<br/>
+        <br/>
+        <br/>
+        <table>
+        	<thead><th colspan="4">它的个人资料：<br/><br/><br/></th></thead>
+		{% for i in row %}        	
+		<tr>
+            	<td>{{i[0]}}</td>
+                <td class="x">x</td>
+                <td>{{i[1]}}</td>
+                <td>{{i[1]*i[2]}}元</td>
+            	</tr>
+		{% endfor %}
+            <tfoot><td colspan="4"><br/>总计{{price}}元</td></tfoot>
+        </table>
+		<br/>
+        <br/>
+       
+        <p>
+        	好好待它哦~
+        </p>
+        <br/>
+        
+        <p id="end">
+        	身心不能再老了，<br/><br/>每天吃水果，<br/><br/>健康浙大人。<br/><br/><br/><br/>
+        <p>祝好，<br/><br/>同样爱你的水果君</p>
+        </p>
+	</fieldset>
+    
+</form>
+</div>
+</body>

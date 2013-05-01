@@ -1,0 +1,332 @@
+a {
+	color:orange;
+	padding-left:5px;
+	padding-right:5px;
+	cursor:pointer;
+}   
+a:link {
+	color:orange; 
+	text-decoration:none;
+}
+
+a:active{
+	color: orange; 
+}   
+
+a:visited {
+	color:orange;
+	text-decoration:none;
+}   
+a:hover{
+	color: white;
+
+}
+
+input.fruit_quantity{
+	width:25px;
+}
+
+body{
+	margin:0;
+	font-family:Tahoma,Verdana,STHeiTi,simsun,sans-serif;
+	font-size:14px;
+}
+
+p{
+	color:white;
+	
+}
+
+#top{
+	background-color:black;
+	width:100%;
+	height:60px;
+	position:fixed;
+	//padding:3px 0;
+	
+}
+
+#header{
+	margin:auto; 
+	width:960px;
+	height:60px;
+	background-color:black;
+}
+
+#logo{
+	padding-top:8px;
+	//padding-left:10px;
+	float:left;
+	margin-right:10px;
+}
+
+#menu{
+	float:left;
+	width:280px;
+	margin-left:-20px;
+	margin-top: -5px;
+	font-weight: bold;
+	margin-right: 0px;
+	font-size:12px;
+	line-height:25px;
+}
+
+
+.menu_li{
+	float:left;
+	margin-right:10px;
+	list-style-type:none;
+}
+
+.menu_small a{
+	font-size:12px;
+	font-weight:100;
+	color:#A70;
+	
+}
+
+.menu_big a{
+	font-size:12px;
+	font-weight:100;
+	color:#FFF;
+	
+}
+
+.menu_small a:hover{
+	
+	color:white;
+	
+}
+
+#menu a, #logo a{
+	padding-left:0;
+	padding-right:0;
+}
+
+#content{
+	width:900px;
+	margin:auto;
+}
+
+
+.for_sale{
+	float:left;
+	-moz-border-radius: 11px;
+    -khtml-border-radius: 11px;
+    -webkit-border-radius: 11px;
+    border-radius: 11px;
+    border: 1px solid grey;
+	width:160px;
+	height:250px;
+	margin-left:10px;
+	margin-top:10px;
+}
+
+
+
+.top_date{
+	float:left;
+	margin-left:5px;
+}
+
+.date{
+	float:left;
+	line-height: 8px;
+	font-size:9px;
+	margin-top:9px;
+	width:37px;
+}
+
+.img_date{
+	float:left;
+}
+
+.pic_fr{
+	padding-left: 15px;
+	padding-top: 5px;
+}
+
+.p_title{
+	color:black;
+	font-size: 20px;
+	font-weight:bold;
+	padding-left:10px;
+	line-height:0px;
+}
+
+.p_normal{
+	color:grey;
+	padding-left:10px;
+	line-height:1px;
+	font-size:10px;
+}
+
+.sale_word{
+	float:left;
+	width:160px;
+}
+
+.sale_price{
+	float:left;
+	
+}
+
+.sale_season{
+	float:right;
+	margin-right:15px;
+	margin-top:5px;
+	
+}
+
+.drop_in{
+	
+	margin:auto;
+	width:100px;
+}
+
+.blank{
+	height:90px;
+}
+
+.drop_word{
+	color:orange;
+	
+	text-align:center;
+}
+
+#submit{
+	float:left;
+	position:relative;
+	margin-left: 10px;
+	padding-top: 10px;
+}
+
+
+#render{
+	height:90px;
+}
+
+.pop_arrow{
+	 margin-top:-9px;
+	 margin-left:125px;
+}
+
+.popover{
+	top:85px;
+	float:left;
+	//position:relative;
+	position: absolute;
+	//z-index: 1010;
+	display: none;
+	width: 276px;
+	padding: 1px;
+	text-align: left;
+	white-space: normal;
+	background-color: orange;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	-webkit-background-clip: padding-box;
+	-moz-background-clip: padding;
+	background-clip: padding-box;
+	//position:fixed;
+}
+.popover.bottom .arrow {
+top: -11px;
+left: 50%;
+margin-left: -11px;
+border-bottom-color: #999;
+border-bottom-color: rgba(0, 0, 0, 0.25);
+border-top-width: 0;
+}
+.popover .arrow {
+border-width: 11px;
+}
+.popover .arrow, .popover .arrow:after {
+position: absolute;
+display: block;
+width: 500px;
+height: 0;
+border-color: transparent;
+border-style: solid;
+}
+
+.popover a{
+	color:white;
+}
+
+.popover-content p{
+	color:black;
+	line-height:0;
+}
+
+.popover table{
+	margin-left:10px;
+	margin-bottom:10px;
+}
+
+.popover tfoot{
+	color:white;
+}
+
+
+.item{
+	width:90px;
+}
+
+.price{
+	width:50px;
+}
+
+#test{
+	font-size:14px;
+	color:black;
+	-moz-border-radius: 6px;
+    -khtml-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid orange;
+	background:orange;
+	width:70px;
+	height:30px;
+	margin-top:8px;
+	padding-left:5px;
+}
+
+button#test:hover {
+	border: 1px solid #FFF;
+	background:#FFF;
+	color:orange;
+	cursor: pointer;
+}
+
+
+.drop_in button{
+	font-size:14px;
+	color:orange;
+	-moz-border-radius: 6px;
+    -khtml-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid orange;
+	background:white;
+	width:100px;
+	height:40px;
+	margin-top:-4px;
+	padding-left:5px;
+}
+
+.drop_in button:hover {
+	border: 1px solid #FFF;
+	background:orange;
+	color:#FFF;
+	cursor: pointer;
+}
+
+.popsums{
+	width:250px;
+	height:15px;
+}

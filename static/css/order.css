@@ -1,0 +1,258 @@
+html, body, h1, form, fieldset, legend, ol, li, table, td, tr {
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	//color: #ffffff;
+	font-family: Tahoma, Verdana, STHeiTi, simsun, sans-serif;
+	//text-shadow: 0 3px 12px #000000;
+}
+
+form#basic {
+	//padding: 20px;
+	font-size:12px;
+	width: 150px;
+	margin-top:40px;
+	margin-left:30px;
+}
+form#basic table {
+	border: none;
+	margin-bottom: 10px;
+	
+	//text-align: right;
+}
+
+
+
+form#basic tr{
+	line-height: 20px;
+	list-style: none;
+	
+	margin-bottom: 2px;
+	
+}
+
+form fieldset {
+	border: none;
+	margin-bottom: 10px;
+}
+
+button {
+	background: #e17022;
+	border: none;
+	color: #ffffff;
+	display: block;
+	font: "黑体";
+	float:right;
+	padding: 7px 9px;
+	text-shadow: 0 1px 1px #cccccc;
+}
+button:hover {
+	background: #1e2506;
+	cursor: pointer;
+}
+
+#basicinfo{
+	position: absolute;
+	margin-left: 20px;
+	margin-top: 80px;
+	top: 21px;
+}
+
+#del{
+	position: absolute;
+	margin-left: 600px;
+	top: 21px;
+}
+
+
+#guide th {
+	color: #e17022;
+	font-size: 26px;
+	font-weight: bold;
+	padding-bottom: 10px;
+	text-shadow:none;
+	text-align:left;
+	line-height:46px;
+}
+
+
+table#guide{
+	font-size: 15px;
+	color:#ffffff;
+	width: 220px;
+	position: absolute;
+	text-align: right;
+	text-align:left;
+	margin-top: 42px;
+	margin-left: 550px;
+}
+
+#bas td {
+	width:200px;
+}
+
+li {
+	list-style:none;
+}
+
+.add {
+	float:left;
+	margin-top:10px;
+}
+
+#right {
+	float:right;
+}
+
+
+
+img{
+	margin-left:-20px;
+}
+
+
+#record {
+	position: absolute;
+	top: 720px;
+	left: 259px;
+}
+
+#record td{
+	width:60px;
+	height:20px;
+}
+
+#cal tbody tr td {
+	width:130px;
+}
+
+#cal {
+	position: absolute;
+	margin-top: 150px;
+	margin-left: 200px;
+	font-size: 12px;
+	left: 20px;
+	top: 21px;
+}
+
+.orderdiv {
+	margin-left:-20px;
+}
+
+
+.orderdiv img{
+	margin-left:0px;
+	margin-top:0px;
+}
+
+
+
+.orderlist {
+	background:#E17028;
+	width:130px;
+	color:#FFF;
+	font-size:10px;
+	margin-top:-2px;
+	margin-left:-13px;
+	padding-top:10px;
+	padding-left:10px;
+	padding-bottom:10px;
+}
+
+.talk{
+	font-size:10px;
+}
+
+
+body{
+	
+	font-family: Tahoma, Verdana, STHeiTi, simsun, sans-serif;
+	padding: 20px;
+	color:#999;
+	background:url("../images/bg_order.png");
+	background-repeat:no-repeat;
+}
+
+form#delinfo select {
+	background: rgba(255,255,255,.3);
+	border:none; 
+	font: italic 13px Georgia, "Times New Roman", Times, serif;
+	color:#000;
+	text-shadow: 0 3px 12px #000000;
+	outline: none;
+	padding: 5px;
+	width: 200px;
+}
+
+button.info {
+	background: #eeeeee;
+	border: none;
+	color: #e17022;
+	display: block;
+	font: "黑体";
+	margin: auto;
+	padding: 0px 0px;
+	text-shadow: 0 1px 1px #cccccc;
+}
+button.info:hover {
+	background: #eeeeee;
+	cursor: pointer;
+}
+
+table.infobtn{
+	width:130px;
+}
+
+.items{
+	width:50px;
+}
+
+table#points{
+	margin-top:40px;
+}
+
+table.btn{
+	margin-left:40px;
+	margin-top:40px;
+	height:150px;
+}
+
+div#basicinfo{
+	
+	background-color:#eeeeee;
+	margin-left:-20px;
+	margin-top:56px;
+	width:200px;
+	height:1600px;
+}
+
+div#dailynews{
+	width:600px;
+	line-height:15px;
+	font-size:12px;
+	margin-top:80px;
+	margin-left:230px;
+}
+
+td#newstitle{
+	line-height:28px;
+	color: #e17022;
+}
+
+button.info2 {
+background: #ffffff;
+border: none;
+color: #e17022;
+display: block;
+font: "黑体";
+
+padding-top:10px;
+text-shadow: 0 1px 1px #cccccc;
+}
+button.info2:hover {
+background: #ffffff;
+cursor: pointer;
+}
+

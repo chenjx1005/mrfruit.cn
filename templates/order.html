@@ -1,0 +1,294 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="description" content="水果君,MrFruit" />
+		<meta name="keywords" content="水果君,MrFruit" />
+		<link rel="alternate" type="application/rss+xml" title="RSS 2.0 - all posts" href="http://mrfuit.com/feed/" />
+		<title>水果君列表</title>
+		<link rel="stylesheet" type="text/css" media="all" href="../static/css/index.css" />
+		<link rel="shortcut icon" href="../static/favicon.ico">
+		<script src="../static/js/order.js"></script>
+        <script src="../static/js/jquery-1.9.1.js"></script>
+	</head>
+	<body onload="init()">
+	<form action="{{ url_for('re') }}" method="POST">
+		<div id="top">
+			<div id="header">
+				
+				<div id="logo">
+					<a href="#"><img src="../static/images/logo.png" \></a>
+				</div>
+				
+				<div id="menu">
+					<ul>
+                    	<li class="menu_li menu_big"><a href="#">水果君爱你，{{ session.name }}</a></li>
+						<li class="menu_li menu_small"><a href="/logout">退出</a></li>
+						<li class="menu_li menu_small"><a href="{{url_for('edit')}}">修改资料</a></li>
+                        <li class="menu_li"><a href="{{url_for('history')}}">历史订单</a></li>
+                        <li class="menu_li"><a href="{{url_for('msg')}}">给水果君留言</a></li>
+						<li class="menu_li"><a href="{{ url_for('questions') }}">常见问题</a></li>
+					</ul>
+				</div>
+				
+				<div class="top_date" onclick='clickOn("date1")'>
+					<div class="img_date">
+						<img id="date1" src="../static/images/blank_basket_notfocus.png" \>
+					</div>
+					<div class="date">
+						<p id="date11">周一</p>
+						<p id="date12"></p>
+					</div>
+				</div>
+				
+				<div class="top_date" onclick='clickOn("date2")'>
+					<div class="img_date">
+						<img id="date2" src="../static/images/blank_basket_notfocus.png" \>
+					</div>
+					<div class="date">
+						<p id="date21">周二</p>
+						<p id="date22">3/25</p>
+					</div>
+				</div>
+				
+				<div class="top_date" onclick='clickOn("date3")'>
+					<div class="img_date">
+						<img id="date3" src="../static/images/blank_basket_notfocus.png" \>
+					</div>
+					<div class="date">
+						<p id="date31">周三</p>
+						<p id="date32">3/26</p>
+					</div>
+				</div>
+				
+				<div class="top_date" onclick='clickOn("date4")'>
+					<div class="img_date">
+						<img id="date4" src="../static/images/blank_basket_notfocus.png" \>
+					</div>
+					<div class="date">
+						<p id="date41">周四</p>
+						<p id="date42">3/27</p>
+					</div>
+				</div>
+				
+				<div class="top_date" onclick='clickOn("date5")'>
+					<div class="img_date">
+						<img id="date5" src="../static/images/blank_basket_notfocus.png" \>
+					</div>
+					<div class="date">
+						<p id="date51">周五</p>
+						<p id="date52">3/28</p>
+					</div>
+				</div>
+				<div id="submit">
+					<button id="test">提交订单</button>
+				</div>
+                <div id="pops">
+                    <div id="pop1" class="popover fade bottom in" style="margin-left: 205px; display: block;">
+                        <div class="pop_arrow"><img src="../static/images/arrow.png"/></div>
+                        <div id="pop11" class="popover-content">
+                            <table id="pop1_table">
+                                <tfoot><tr><td colspan="4">总计：0元</td></tr></tfoot>
+                            </table>
+                        </div>
+                       
+                    </div>
+                    
+                    <div id="pop2" class="popover fade bottom in" style="margin-left: 317px; display: block;">
+                        <div class="pop_arrow"><img src="../static/images/arrow.png"/></div>
+                        <div id="pop21" class="popover-content">
+                        	 <table id="pop2_table">
+                                <tfoot><tr><td colspan="4">总计：0元</td></tr></tfoot>
+                            </table>
+                       </div>
+                    </div>
+                    
+                    <div id="pop3" class="popover fade bottom in" style=" margin-left: 429px; display: block;">
+                        <div class="pop_arrow"><img src="../static/images/arrow.png"/></div>
+                        <div id="pop31" class="popover-content">
+                        	 <table id="pop3_table">
+                                <tfoot><tr><td colspan="4">总计：0元</td></tr></tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div id="pop4" class="popover fade bottom in" style=" margin-left: 541px; display: block;">
+                        <div class="pop_arrow"><img src="../static/images/arrow.png"/></div>
+                        <div id="pop41" class="popover-content">
+                        	 <table id="pop4_table">
+                                <tfoot><tr><td colspan="4">总计：0元</td></tr></tfoot>
+                            </table>
+                       </div>
+                    </div>
+                    
+                    <div id="pop5" class="popover fade bottom in" style=" margin-left: 653px; display: block;">
+                        <div class="pop_arrow"><img src="../static/images/arrow.png"/></div>
+                        <div id="pop51" class="popover-content">
+                        	 <table id="pop5_table">
+                                <tfoot><tr><td colspan="4">总计：0元</td></tr></tfoot>
+                            </table>
+                       </div>
+                    </div>
+                </div>
+				
+			</div>
+            
+		</div>
+    
+		<div id="render"></div>
+		<div id="content">
+		{% for fruit in fruits %}
+			<div class="for_sale">
+				<img class="pic_fr" src="../static/images/{{ fruit[0] }}.png">
+				<div class="sale_word">
+					<p class="p_title">{{ fruit[1] }}</p>
+				</div>
+				<div class="sale_price">
+					<p class="p_normal">{{ fruit[2] }}元/个</p>
+					<p class="p_normal">合{{ fruit[3] }}元/斤</p>
+				</div>				
+				<div class="sale_season">
+				{% if fruit[4]==1 %}
+					<img class="season" src="../static/images/season_in.png">
+				{% elif fruit[4]==2 %}
+					<img class="season" src="../static/images/popular.png">
+				{% endif %}
+				</div>
+				<div class="blank"></div>
+				<div class="drop_in" onclick="addToBascket('f{{ fruit[0] }}',1)">
+					<button type="button">放进水果篮</button>
+				</div>
+			</div>
+		{% endfor %}
+		
+			<!--div class="for_sale">
+				<img class="pic_fr" src="../static/images/banana.png">
+				<div class="sale_word">
+					<p class="p_title">香蕉</p>
+					<p class="p_normal">0.8元/个</p>
+					<p class="p_normal">合7.8元/斤</p>
+				</div>
+				<div class="sale_season">
+					<img class="season" src="../static/images/popular.png">
+				</div>
+				<div class="blank"></div>
+				<div class="drop_in" onclick="addToBascket('f2',1)">
+					<button type="button">放进水果篮</button>
+				</div>
+			</div>
+			
+			<div class="for_sale">
+				<img class="pic_fr" src="../static/images/pitaya.png">
+				<div class="sale_word">
+					<p class="p_title">火龙果</p>
+					<p class="p_normal">6元/个</p>
+					<p class="p_normal">合13元/斤</p>
+				</div>
+				<div class="sale_season">
+					<img class="season" src="">
+				</div>
+				<div class="blank"></div>
+				<div class="drop_in" onclick="addToBascket('f3',1)">
+					<button type="button">放进水果篮</button>
+				</div>
+			</div-->
+			
+			
+		</div>
+        
+        
+        <div id="record">
+            <table id="Recdate1">
+                <tbody>
+				{% for i in fruits %}
+                <tr class="Recf{{ i[0] }}">
+                    <td class="RecI"></td>
+                    <td class="RecP"></td>
+                    <td class="RecQ"></td>
+                    <td class="RecC"></td>
+                </tr>
+               {% endfor %}
+                <tfoot class="total">
+                    <td colspan="4"></td>
+                </tfoot>
+            </tbody></table>
+            
+            <table id="Recdate2">
+                <tbody>
+					{% for i in fruits %}
+                <tr class="Recf{{ i[0] }}">
+                    <td class="RecI"></td>
+                    <td class="RecP"></td>
+                    <td class="RecQ"></td>
+                    <td class="RecC"></td>
+                </tr>
+               {% endfor %}
+                <tfoot class="total">
+                    <td colspan="4"></td>
+                </tfoot>
+            </tbody></table>
+            
+            <table id="Recdate3">
+                <tbody>
+				{% for i in fruits %}
+                <tr class="Recf{{ i[0] }}">
+                    <td class="RecI"></td>
+                    <td class="RecP"></td>
+                    <td class="RecQ"></td>
+                    <td class="RecC"></td>
+                </tr>
+               {% endfor %}
+                <tfoot class="total">
+                    <td colspan="4"></td>
+                </tfoot>
+            </tbody></table>
+            <table id="Recdate4">
+                <tbody>
+				{% for i in fruits %}
+                <tr class="Recf{{ i[0] }}">
+                    <td class="RecI"></td>
+                    <td class="RecP"></td>
+                    <td class="RecQ"></td>
+                    <td class="RecC"></td>
+                </tr>
+               {% endfor %}
+                <tfoot class="total">
+                    <td colspan="4"></td>
+                </tfoot>
+            </tbody></table>
+            
+            <table id="Recdate5">
+                <tbody>
+				{% for i in fruits %}
+                <tr class="Recf{{ i[0] }}">
+                    <td class="RecI"></td>
+                    <td class="RecP"></td>
+                    <td class="RecQ"></td>
+                    <td class="RecC"></td>
+                </tr>
+               {% endfor %}
+                <tfoot class="total">
+                    <td colspan="4"></td>
+                </tfoot>
+            </tbody>
+            </table>
+        </div>
+
+
+	</body>
+    </form>
+    <script>
+	//初始化项目
+		{% for fruit in fruits %}
+			$("tr.Recf{{ fruit[0] }} td.RecI").text("{{ fruit[1] }}");
+			$("tr.Recf{{ fruit[0] }} td.RecP").text("{{ fruit[2] }}");
+			$("tr.Recf{{ fruit[0] }} td.RecQ").text("0");
+			$("tr.Recf{{ fruit[0] }} td.RecC").text("0元");
+		{% endfor %}
+			$("#record").css("display","none");
+			
+		  
+	  
+	
+	</script>
+</html>

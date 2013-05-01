@@ -1,0 +1,117 @@
+body{
+	font-family:Tahoma,Verdana,STHeiTi,simsun,sans-serif;
+	font-size:12px;
+}
+
+#content{
+	width:960px;
+	margin:auto;
+}
+
+#pic{
+	float:left;
+}
+
+#reg_form{
+	float:left;
+	margin-left:70px;
+	padding-top:50px;
+}
+
+#title{
+	color:orange;
+	font-size: 26px;
+	font-weight: bold;
+}
+form#payment {
+	padding: 20px;
+	width: 400px;
+}
+form#payment fieldset {
+	border: none;
+	margin-bottom: 10px;
+}
+form#payment fieldset:last-of-type {
+	margin-bottom: 0;
+}
+form#payment legend {
+	color:orange;
+	font-size: 16px;
+	font-weight: bold;
+	padding-bottom: 10px;
+	text-shadow: 0 1px 1px #eeeeee;
+}
+
+form#payment select {
+	background: #ffffff;
+	border:none; 
+	font: italic 13px Georgia, "Times New Roman", Times, serif;
+	color:#000;
+	outline: none;
+	padding: 5px;
+	width: 200px;
+}
+
+ol li {
+	line-height: 30px;
+	list-style: none;
+	padding: 5px 10px;
+	margin-bottom: 2px;
+}
+
+label {
+	float: left;
+	font-size: 13px;
+	width: 60px;
+}
+
+label:hover {
+	cursor: pointer;
+}
+
+input:not([type=radio]){
+	background: #f7f7f7;
+	border: none;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	font: italic 13px Georgia, "Times New Roman", Times, serif;
+	outline: none;
+	padding: 5px;
+	width: 200px;
+}
+
+input:not([type=submit]):focus{
+	background:#FEC;
+}
+
+button{
+	font-size:14px;
+	color:orange;
+	-moz-border-radius: 6px;
+    -khtml-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid orange;
+	background:#fff;
+	width:170px;
+	padding-left:15px;
+	margin-top:10px;
+	margin-left:140px;
+}
+
+button:hover {
+	background: orange;
+	color:#fff;
+	cursor: pointer;
+}
+
+
+#submit{
+	float:left;
+	position:relative;
+	margin-left: 20px;
+	padding-top: 10px;
+}
+

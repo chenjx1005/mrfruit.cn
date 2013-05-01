@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<meta charset="UTF-8" >
+<script type="text/javascript" src="../static/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../static/js/history.js"></script>
+<!--newnew删掉<script type="text/javascript" src="js/changeaddress.js"></script>-->
+<link rel="stylesheet" type="text/css" media="screen" href="../static/css/history.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="../static/css/window.css"/>
+
+
+<title>看看我以前都订过什么水果~</title>
+<body>
+
+<header>
+<div id="basicinfo">
+<form id="basic">
+	<fieldset>
+    	<table>
+			<!--  <thead><th>基本信息</th><th></th></thead>  -->
+        	<tbody>
+        		<tr>
+            		<td class="items">手机</td>
+                	<td>18768114571</td>
+            	</tr>
+            	<tr>
+            		<td class="items">学号</td>
+                	<td>3100104926</td>
+            	</tr>
+                <tr>
+            		<td class="items">姓名</td>
+                	<td>张抒</td>
+            	</tr>
+            	<tr>
+            		<td class="items">地址</td>
+                	<td>玉泉8舍275</td><!--这里可以把字段并作一起-->
+            	</tr>
+         	</tbody>
+        </table>
+        <table class="infobtn">
+                <tr>
+                	<td><a href="edit.html"><button class="info" id="tochange" type="button">修改资料</button></a></td>
+                	<td><a href="log.html"><button class="info" id="logout" type="button">退出登陆</button></a></td>
+                </tr>
+        	</tbody>
+		</table>
+        <table id="points">
+        	<tr>
+            	<td class="items">积分</td><td>10个苹果</td>
+            </tr>
+        </table>
+        <table class="infobtn">
+                <tr>
+                	<td><button id="pointsbtn" class="info" type="button">怎么获得积分呢？</button></td>
+                </tr>
+        	</tbody>
+		</table>
+        <table class="btn">
+        		<tr>
+                	<td><a href="history.html"><button type="button">返回订购水果</button></a></td>
+                </tr>
+                <tr>
+                	<td><a href="msg.html"><button type="button">给水果君留言</button></a></td>
+                </tr>
+                <tr>
+                	<td><a href="questions.html"><button type="button">常见问题问答</button></a></td>
+                </tr>
+        	</tbody>
+		</table>
+	</fieldset>
+</form>
+</div>
+
+
+
+</header>
+
+
+<form>
+	<table id="guide">
+        <tbody>
+          	<tr><td>今天是：</td><td id="now"></td><td></td><td id="now2"></td></tr>
+            <tr></tr>
+            </tr> 
+        </tbody>
+	</table>
+
+</form>
+
+<section><form>
+	<table id="cal" >
+    <tbody>
+    	<tr>
+        	<td>时间</td>
+            <td></td>
+            <td class="fruitslist">水果</td>
+            <td class="dailytotal">小计</td>
+        </tr>
+    	<tr>
+        	<td class="date">2013/1/1</td>
+            <td class="weekday">周二</td>
+            <td class="fruitslist">
+            	<table>
+                	<tr>
+                    	<td>苹果</td>
+                        <td>x</td>
+                        <td>2</td>
+                        
+                        <td>6元</td>
+                    </tr>
+                    <tr>
+                    	<td>香蕉</td>
+                        <td>x</td>
+                        <td>1</td>
+                        
+                        <td>2元</td>
+                    </tr>
+                </table>
+            </td>
+            <td>8元</td>
+        </tr>
+        <tr>
+        	<td class="date">2012/12/31</td>
+            <td class="weekday">周一</td>
+            <td class="fruitslist">
+            	<table>
+                	<tr>
+                    	<td>苹果</td>
+                        <td>x</td>
+                        <td>6</td>
+                        
+                        <td>12元</td>
+                    </tr>
+                    <tr>
+                    	<td>香蕉</td>
+                        <td>x</td>
+                        <td>1</td>
+                        
+                        <td>2元</td>
+                    </tr>
+                    <tr>
+                    	<td>李子</td>
+                        <td>x</td>
+                        <td>13</td>
+                        
+                        <td>13元</td>
+                    </tr>
+                </table>
+            </td>
+            <td>26元</td>
+        </tr>
+        
+    	
+        </tbody>
+	</table> </form>
+</section>
+
+<div id="explain">
+	<img class="close" src="img/close.png">
+	<p>现在是一毛钱=一个苹果哦</p>
+</div>
+
+
+
+<div id="choosedate"><form>
+	<table>
+    	<thead>
+        	<td id="newstitle" colspan="6">请选择你想查看的日期范围</td>
+        </thead>
+        <tbody>
+        <tr>
+        	<td>
+            	<select>
+                	<option value="2012">2012</option>
+                    <option value="2013" selected>2013</option>
+                </select>年
+            </td>
+            <td>
+            	<input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" type=text>月
+            </td>
+            <td>
+            	<input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" type=text>日
+            </td>
+            <td class="to">
+            	
+            </td>
+            <td class="to">
+            	至
+            </td>
+            <td>
+            	<select>
+                	<option value="2012">2012</option>
+                    <option value="2013" selected>2013</option>
+                </select>年
+            </td>
+            <td>
+            	<input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" type=text>月
+            </td>
+            <td>
+            	<input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" type=text>日
+            </td>
+            <td class="to"></td>
+            <td>
+            	<button type="submit">选好了~</button>
+            </td>
+        </tr>
+        </tbody>
+    </table></form>
+</div>
+
+
+</div>
+
+  
+
+
+</body>

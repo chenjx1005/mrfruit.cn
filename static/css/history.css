@@ -1,0 +1,215 @@
+a {
+	color:orange;
+	//padding-left:5px;
+	//padding-right:5px;
+	cursor:pointer;
+}   
+a:link {
+	color:orange; 
+	text-decoration:none;
+}
+
+a:active{
+	color: orange; 
+}   
+
+a:visited {
+	color:orange;
+	text-decoration:none;
+}   
+a:hover{
+	color: white;
+
+}
+
+body{
+	margin:0;
+	font-family:Tahoma,Verdana,STHeiTi,simsun,sans-serif;
+	font-size:14px;
+}
+
+#top{
+	width:100%;
+	background-color:black;
+}
+
+#header{
+	margin:auto; 
+	width:960px;
+	height:60px;
+	
+}
+
+#logo{
+	padding-top:8px;
+	//padding-left:10px;
+	float:left;
+	margin-right:10px;
+}
+
+#menu{
+	float:left;
+	width:280px;
+	margin-left:-20px;
+	margin-top: -5px;
+	font-weight: bold;
+	margin-right: 0px;
+	font-size:12px;
+	line-height:25px;
+}
+
+
+.menu_li{
+	float:left;
+	margin-right:10px;
+	list-style-type:none;
+}
+
+.menu_small a{
+	font-size:12px;
+	font-weight:100;
+	color:#A70;
+	
+}
+
+.menu_big a{
+	font-size:12px;
+	font-weight:100;
+	color:#FFF;
+	
+}
+
+.menu_small a:hover{
+	
+	color:white;
+	
+}
+
+
+#content{
+	width:900px;
+	margin:auto;
+}
+
+#select{
+	width:700px;
+	margin:auto;
+	height:70px;
+}
+
+#sel_date p{
+	color:#000;
+}
+
+
+.list{
+	-moz-border-radius: 11px;
+    -khtml-border-radius: 11px;
+    -webkit-border-radius: 11px;
+    border-radius: 11px;
+    border: 1px solid grey;
+	width:660px;
+	margin:auto;
+	//margin-left:10px;
+	//margin-top:10px;
+	padding-bottom:30px;
+	font-size:14px;
+	color:#999;
+}
+
+.list table thead{
+	color:orange;
+	font-weight:800;
+}
+
+.list_table{
+	margin-top:25px;
+	margin-left:25px;
+}
+
+.list_padding div{
+	border-bottom:1px #999 solid;
+	height:10px;
+	width:600px;
+	margin-bottom:10px;
+}
+
+.list_date{
+	width:180px;
+}
+
+.list_item{
+	width:120px;
+}
+
+.list_quantity, .list_price, .list_cost{
+	width:120px;
+}
+
+
+#select ul li{
+	float:left;
+	margin-left:20px;
+	list-style-type:none;
+}
+
+
+#submit{
+	float:left;
+	position:relative;
+	margin-left: 550px;
+	padding-top: 10px;
+}
+
+
+#test{
+	font-size:14px;
+	color:black;
+	-moz-border-radius: 6px;
+    -khtml-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid orange;
+	background:orange;
+	width:70px;
+	height:30px;
+	margin-top:8px;
+	padding-left:5px;
+}
+
+button#test:hover {
+	border: 1px solid #FFF;
+	background:#FFF;
+	color:orange;
+	cursor: pointer;
+}
+
+
+#render{
+	height:50px;
+}
+
+.btn_in button{
+	font-size:14px;
+	color:orange;
+	-moz-border-radius: 6px;
+    -khtml-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid orange;
+	background:#fff;
+	width:100px;
+	margin-top:12px;
+	padding-left:5px;
+}
+
+.btn_in button:hover {
+	background: orange;
+	color:#fff;
+	cursor: pointer;
+}
+
+.oid{
+	font-size:12px;
+	color:#ccc;
+}

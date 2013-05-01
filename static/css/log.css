@@ -1,0 +1,104 @@
+a {
+	color:orange;
+}   
+a:link {
+	color:orange; 
+	text-decoration:none;
+}
+
+a:active{
+	color: orange; 
+}   
+
+a:visited {
+	color:orange;
+	text-decoration:none;
+}   
+a:hover{
+	color: orange;
+}
+
+body{
+	font-family:Tahoma,Verdana,STHeiTi,simsun,sans-serif;
+	font-size:12px;
+}
+
+#content{
+	width:960px;
+	height:600px;
+	margin:auto;
+	background-image:url(../images/log.png);
+	background-repeat:no-repeat;
+}
+
+#log_form{
+	margin-top:60px;
+	margin-left:530px;
+	padding-top:180px;
+}
+
+ol li {
+	line-height: 30px;
+	list-style: none;
+	padding: 5px 10px;
+	margin-bottom: 2px;
+}
+
+label {
+	float: left;
+	font-size: 13px;
+	width: 60px;
+}
+
+label:hover {
+	cursor: pointer;
+}
+
+input:not([type=radio]){
+	background: #f7f7f7;
+	border: none;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	font: italic 13px Georgia, "Times New Roman", Times, serif;
+	outline: none;
+	padding: 5px;
+	width: 200px;
+}
+
+input:not([type=submit]):focus{
+	background:#FEC;
+}
+
+button{
+	font-size:14px;
+	color:orange;
+	-moz-border-radius: 6px;
+    -khtml-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid orange;
+	background:#fff;
+	width:170px;
+	padding-left:15px;
+}
+
+button:hover {
+	background: orange;
+	color:#fff;
+	cursor: pointer;
+}
+
+#btn{
+	margin-top:40px;
+	margin-left:60px;
+}
+
+#submit{
+	float:left;
+	position:relative;
+	margin-left: 20px;
+	padding-top: 10px;
+}
+

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<meta charset="UTF-8" >
+<style type="text/css" >
+html, body, h1, form, fieldset, legend, ol, li {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background:url("img/smallbg.png");
+	background-repeat:no-repeat;
+	color: #111111;
+	font-family: Tahoma, Verdana, STHeiTi, simsun, sans-serif;
+	padding: 20px;
+}
+#da{
+	position:absolute;
+	margin-top:50px;
+	margin-left:200px;
+	width:300px;
+}
+#title{
+	color:#e17022;
+	font-size: 26px;
+	font-weight: bold;
+}
+#end{
+	color:#e17022;
+	font-size: 16px;
+	font-weight: bold;
+}
+thead th{
+	color:#e17022;
+	font-size: 16px;
+	font-weight: bold;
+}
+form#payment {
+	padding: 20px;
+	
+}
+form#payment fieldset {
+	border: none;
+	margin-bottom: 10px;
+}
+
+
+p{
+	color: #999999;
+	font-size:10px;
+	
+}
+
+table{
+	text-align:left;
+}
+
+table tr td {
+	width: 50px;
+	
+}
+
+.x{
+	width:20px;
+}
+
+
+</style>
+<title>等着吃水果吧！</title>
+<body>
+<div id="da">
+
+
+<p id="title">热爱水果君的亲，<br/><br/>你好。</p>
+
+
+<form id=payment>
+<fieldset>
+    	<p>
+        	在过去的一周里，<br/><br/>你与我们的众多成员有了亲密接触，<br/><br/>看看你的水果，<br/><br/>你都遇见了谁？
+        </p>
+    </fieldset>
+	<fieldset>
+    	<br/>
+        <br/>
+        <br/>
+        <table>
+        	<thead><th colspan="5">水果：<br/><br/><br/></th></thead>
+		{% for i in row %}
+        	<tr>
+            	<td class="blank"></td>
+            	<td>{{i[0]}}</td>
+                <td class="x">x</td>
+                <td>{{i[1]}}</td>
+                <td>{{i[1]*i[2]}}元</td>
+            </tr>
+		{% endfor %}
+            <tfoot><td colspan="5"><br/><br/>总计{{price}}元</td></tfoot>
+        </table>
+		<br/>
+        <br/>
+       
+        <p>
+        	请按照账单报销它们来时候的路费，<br/><br/>我们会派遣工作人员上门收取，<br/><br/>谢谢。
+        </p>
+        <br/>
+        
+        <p id="end">
+        	身心不能再老了，<br/><br/>每天吃水果，<br/><br/>健康浙大人。<br/><br/><br/><br/>
+        <p>祝好，<br/><br/>同样爱你的水果君</p>
+        </p>
+	</fieldset>
+    
+</form>
+</div>
+</body>

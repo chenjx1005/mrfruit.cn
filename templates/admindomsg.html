@@ -1,0 +1,14 @@
+<a href="{{ url_for('showmsg') }}">显示已回复留言</a>
+<form action="" method="POST">
+	<p>id:<input name="id" /></p>
+	<p>re:<textarea name="re" /></textarea></p>
+	<input type="submit" value="Submit" />
+</form>
+<hr>
+{% for i in row %}
+	<h>id:{{ i[0] }}</h><br>
+	<p>tel:{{ i[1] }}</p>
+	<p>time:{{ i[2] }}</p>
+	<p>{{ i[3] }}</p>
+	<hr/>
+{% endfor %}

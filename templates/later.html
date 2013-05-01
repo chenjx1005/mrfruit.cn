@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="description" content="水果君,MrFruit" />
+		<meta name="keywords" content="水果君,MrFruit" />
+		<link rel="alternate" type="application/rss+xml" title="RSS 2.0 - all posts" href="http://mrfuit.com/feed/" />
+		<title>等着吃水果吧！~</title>
+		<link rel="stylesheet" type="text/css" media="all" href="../static/css/later.css" />
+		<link rel="shortcut icon" href="../static/favicon.ico">
+        
+	</head>
+	<body onload="countDown(5,'/')">
+    	<script>
+			function countDown(secs,surl){         
+ 				 var jumpTo = document.getElementById('jumpTo');
+				 jumpTo.innerHTML=secs;  
+				 if(--secs>0)
+				 {     
+     					setTimeout("countDown("+secs+",'"+surl+"')",1000);     
+   				 }     
+				 else
+				 {       
+    				 location.href=surl;     
+    			 }     
+		 	}    
+		</script>
+		<div id="content">
+        	<div id="pic"><img src="../static/images/mr.png" /></div>
+        	<div id="reg_form">
+                <p id="title">水果君已经收到你订单啦！~</p>
+             	<br/><br/><br/>
+                
+                        <p class="end">您选择了以后再付，<br/>
+                        </p>
+                        <p>您的累计未付金额为{{ session.money }}元，</p><p><span id="jumpTo">5</span>秒钟后将自动跳转至选水果页面。</p>
+                        
+                        
+                       
+        	</div>
+        </div>
+	</body>
+</html>

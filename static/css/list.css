@@ -1,0 +1,188 @@
+a {
+	color:orange;
+}   
+a:link {
+	color:orange; 
+	text-decoration:none;
+}
+
+a:active{
+	color: orange; 
+}   
+
+a:visited {
+	color:orange;
+	text-decoration:none;
+}   
+a:hover{
+	color: orange;
+}
+
+body{
+	margin:0;
+	font-family:Tahoma,Verdana,STHeiTi,simsun,sans-serif;
+	font-size:14px;
+}
+
+
+#top{
+	width:100%;
+	background-color:black;
+}
+
+#header{
+	margin:auto; 
+	width:960px;
+	height:60px;
+	background-color:black;
+}
+
+#logo{
+	padding-top:8px;
+	padding-left:10px;
+	float:left;
+}
+
+#menu{
+	float:left;
+	width:650px;
+	margin-top: -5px;
+	//font-weight: bold;
+	line-height:25px;
+	margin-left: -50px;
+}
+
+.menu_li {
+	list-style-type:none;
+	padding-left:40px;
+}
+
+li{
+	list-style-type:none;
+}
+
+
+#content{
+	width:900px;
+	margin:auto;
+}
+
+#week{
+	width:700px;
+	margin:auto;
+	margin-top:50px;
+}
+
+.table_date{
+	vertical-align:top;
+	//width:80px;
+}
+
+.list_date{
+	float:left;
+	margin-top:30px;
+	margin-bottom:30px;
+	width:140px;
+}
+
+.date{
+	float:left;
+	line-height: 8px;
+}
+
+.img_date{
+	float:left;
+}
+
+.list{
+	-moz-border-radius: 11px;
+    -khtml-border-radius: 11px;
+    -webkit-border-radius: 11px;
+    border-radius: 11px;
+    border: 1px solid grey;
+	width:500px;
+	//margin:auto;
+	//margin-left:10px;
+	//margin-top:10px;
+	padding-bottom:30px;
+	font-size:14px;
+	color:#999;
+	margin-top:40px;
+}
+
+.list table thead{
+	color:orange;
+	font-weight:800;
+}
+
+.list_table{
+	margin-top:25px;
+	margin-left:25px;
+}
+
+.list_padding div{
+	border-bottom:1px #999 solid;
+	height:10px;
+	width:440px;
+	margin-bottom:10px;
+}
+
+
+.list_item{
+	width:120px;
+}
+
+.list_quantity, .list_price, .list_cost{
+	width:120px;
+}
+
+.menu_li{
+	color:white;
+	float:left;
+	margin-left:20px;
+}
+
+
+#submit{
+	float:left;
+	position:relative;
+	margin-top: -5px;
+}
+
+.sub_li{
+	float:left;
+	margin-left:10px;
+}
+
+.test{
+	font-size:14px;
+	color:black;
+	-moz-border-radius: 6px;
+    -khtml-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid orange;
+	background:orange;
+	//width:160px;
+	height:30px;
+	margin-top:8px;
+	padding-left:5px;
+}
+
+#btn_go{
+	width:150px;
+}
+
+#btn_later{
+	width:80px;
+}
+
+button.test:hover {
+	border: 1px solid #FFF;
+	background:#FFF;
+	color:orange;
+	cursor: pointer;
+}
+#render{
+	height:50px;
+}

@@ -1,0 +1,32 @@
+body{
+	font-family:Tahoma,Verdana,STHeiTi,simsun,sans-serif;
+	font-size:12px;
+	text-align:center;
+}
+
+
+
+#content{
+	width:400px;
+	margin:auto;
+}
+
+
+#reg_form{
+	
+	margin:auto;
+	padding-top:50px;
+	width:400px;
+}
+
+#title{
+	color:orange;
+	font-size: 26px;
+	font-weight: bold;
+}
+
+.end{
+	color:orange;
+	font-size: 16px;
+	font-weight: bold;
+}

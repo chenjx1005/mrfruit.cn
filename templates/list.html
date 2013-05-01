@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="description" content="水果君,MrFruit" />
+		<meta name="keywords" content="水果君,MrFruit" />
+		<link rel="alternate" type="application/rss+xml" title="RSS 2.0 - all posts" href="http://mrfuit.com/feed/" />
+		<title>订单内容</title>
+		<link rel="stylesheet" type="text/css" media="all" href="../static/css/list.css" />
+		<link rel="shortcut icon" href="../static/favicon.ico">
+		<script>
+				
+		</script>
+	</head>
+	<body onload="init()">
+		<div id="top">
+			<div id="header">
+				
+				<div id="logo">
+					<a href="{{ url_for('order') }}"><img src="../static/images/logo.png" \></a>
+				</div>
+				
+				<div id="menu">
+					<ul>
+						<li class="menu_li">收货人：{{ session.name }}</li>
+                        <li class="menu_li">电话：{{ session.phone }}</li>
+						<li class="menu_li">地址：{% if session.campus=="yq" %}
+                	<td>玉泉{{ session.building }}{{ session.room }}</td>
+					{% elif session.campus=="zjg" %}
+					<td>紫金港{{ session.building }}{{ session.room }}</td>
+					{% elif session.campus=="xx" %}
+					<td>西溪{{ session.building }}{{ session.room }}</td>
+					{% endif %}</li>
+						<li class="menu_li">订单总计：{{ total_fee }}元<a>（其中之前未付款：{{ session.money }}元）</a></li>
+					</ul>
+				</div>
+				<div id="submit">
+                	<ul>
+						{{ payhtml|safe }}
+						<!--li class="sub_li">
+                    	<button class="test" id="btn_go">确认无误，去付款！</button></li>
+                        <li class="sub_li"><button class="test" id="btn_later" type=submit onclick="javascript:this.form.action='/nopay'" >以后再付</button></li-->
+                    </ul>	
+				</div>
+				
+			</div>
+		</div>
+		
+		<div id="content">
+        	<table id="week">
+			{% for i in row %}
+            	<tr>
+                	<td width="140" class="table_date">
+                    	<div class="list_date">
+                        	<div  class="img_date">
+                            	<img src="../static/images/full_basket_focus.png" />
+                            </div>
+                            <div class="date">
+                            	<p id="date{{ i[0][1] }}1">
+								    {% if i[0][1]==1 %}
+									周一
+									{% elif i[0][1]==2 %}
+									周二
+									{% elif i[0][1]==3 %}
+									周三
+									{% elif i[0][1]==4 %}
+									周四
+									{% elif i[0][1]==5 %}
+									周五
+									{% endif %}
+								</p>
+								<p id="date{{ i[0][1] }}2">{{ i[0][0] }}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td width="548">
+                    	<div class="list">
+                            <table class="list_table">
+                                <thead>
+                                    <tr>
+                                        <td>
+                                            <table>
+                                                <tr>
+                                                    <td class="list_item">名称</td>
+                                                    <td class="list_quantity">数量</td>
+                                                    <td class="list_price">单价</td>
+                                                    <td class="list_cost">总价</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="list_padding"><div></div></td></tr>
+                                    <tr>
+                                        <td>
+                                            <table>
+											{% for j in i%}
+                                                <tr>
+                                                    <td class="list_item">{{ j[2] }}</td>
+                                                    <td class="list_quantity">{{ j[3] }}个</td>
+                                                    <td class="list_price">{{ j[4] }}元/个</td>
+                                                    <td class="list_cost">{{ j[3]*j[4]}}元</td>
+                                                </tr>
+											{% endfor %}
+                                            </table>
+                                        </td>
+                                    </tr>
+                         
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+				{% endfor %}
+                <!--tr>
+                	<td class="table_date">
+                    	<div class="list_date">
+                        	<div  class="img_date">
+                            	<img src="img/blank_basket_focus.png" />
+                            </div>
+                            <div class="date">
+                            	<p id="date21">周二</p>
+								<p id="date22">3/31</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                	<td class="table_date">
+                    	<div class="list_date">
+                        	<div  class="img_date">
+                            	<img src="img/full_basket_focus.png" />
+                            </div>
+                            <div class="date">
+                            	<p id="date31">周三</p>
+								<p id="date32">3/31</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                    	<div class="list">
+                            <table class="list_table">
+                                <thead>
+                                    <tr>
+                                        <td>
+                                            <table>
+                                                <tr>
+                                                    <td class="list_item">名称</td>
+                                                    <td class="list_quantity">数量</td>
+                                                    <td class="list_price">单价</td>
+                                                    <td class="list_cost">总价</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="list_padding"><div></div></td></tr>
+                                    <tr>
+                                        <td>
+                                            <table>
+                                                <tr>
+                                                    <td class="list_item">苹果</td>
+                                                    <td class="list_quantity">2个</td>
+                                                    <td class="list_price">3元/个</td>
+                                                    <td class="list_cost">6元</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="list_item">香蕉</td>
+                                                    <td class="list_quantity">2个</td>
+                                                    <td class="list_price">1元/个</td>
+                                                    <td class="list_cost">2元</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                         
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                	<td class="table_date">
+                    	<div class="list_date">
+                        	<div  class="img_date">
+                            	<img src="img/blank_basket_focus.png" />
+                            </div>
+                            <div class="date">
+                            	<p id="date41">周四</p>
+								<p id="date42">3/31</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                	<td class="table_date">
+                    	<div class="list_date">
+                        	<div  class="img_date">
+                            	<img src="img/blank_basket_focus.png" />
+                            </div>
+                            <div class="date">
+                            	<p id="date51">周五</p>
+								<p id="date52">3/31</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                    </td>
+                </tr-->
+            </table>
+		</div>
+	</body>
+</html>

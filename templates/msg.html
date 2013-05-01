@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="description" content="水果君,MrFruit" />
+		<meta name="keywords" content="水果君,MrFruit" />
+		<link rel="alternate" type="application/rss+xml" title="RSS 2.0 - all posts" href="http://mrfuit.com/feed/" />
+		<title>和水果君聊天~</title>
+		<link rel="stylesheet" type="text/css" media="all" href="../static/css/msg.css" />
+		<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+	</head>
+	<body>
+		<div id="content">
+        	<div id="pic"><img src="../static/images/msg.png" /></div>
+        	<div id="reg_form">
+                <p id="title">和水果君聊天：</p>
+                <form id=payment action="{{ url_for('newmsg')}}" method="POST">
+                    <fieldset>
+                        <p>
+                            你还想吃什么其他的水果？有什么话想对水果君说？<br/><br/>
+                        </p>
+                    </fieldset>
+                    <fieldset>
+                        <textarea id="txt" name="txt" autofocus></textarea>
+                    </fieldset>
+                    <fieldset>
+              
+                        <table id="btn">
+                            <tr>
+                                <td></td>
+                                <td><button type=submit>提交</button></td>
+                                <td><button type=button onclick="javascript:window.location.href='/'">返回</button></td>
+                            </tr>
+                        </table>
+                        
+                        
+                    </fieldset>
+                    <fieldset >
+					{% for i in row %}
+                        <table id="chat">
+                            <tr>
+                                <td>
+                                    <table class="me">
+                                        <tr>
+                                            <td class="name">我 
+                                            </td>
+                                            <td class="time">{{ i[0] }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="words" colspan="2">{{ i[1] }}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            {% if i[2] %}
+                            <tr>
+                                <td>
+                                    <table class="fruit">
+                                        <tr>
+                                            <td class="name">水果君
+                                            </td>
+                                            <td class="time">{{ i[2] }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="words" colspan="2">{{ i[3] }}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+						{% endif %}
+                        </table>
+						{% endfor %}
+                        
+                    </fieldset>
+                </form>
+        	</div>
+        </div>
+	</body>
+</html>

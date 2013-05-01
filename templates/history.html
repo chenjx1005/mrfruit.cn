@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="description" content="水果君,MrFruit" />
+		<meta name="keywords" content="水果君,MrFruit" />
+		<link rel="alternate" type="application/rss+xml" title="RSS 2.0 - all posts" href="http://mrfuit.com/feed/" />
+		<title>查看历史订单</title>
+		<link rel="stylesheet" type="text/css" media="all" href="../static/css/history.css" />
+		<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <link rel="stylesheet" href="../static/css/jquery-ui.css" />
+  		<script src="../static/js/jquery-1.9.1.js"></script>
+  		<script src="../static/js/jquery-ui.js"></script>
+		<script>
+			$(function() {
+   				 $( ".datepicker" ).datepicker();
+ 			 });		
+		</script>
+	</head>
+	<body onload="init()">
+		<div id="top">
+			<div id="header">
+				
+				<div id="logo">
+					<a href="{{ url_for('order') }}"><img src="../static/images/logo.png" \></a>
+				</div>
+				
+				<div id="menu">
+					<ul>
+                    	<li class="menu_li menu_big"><a href="#">水果君爱你，{{ session.name }}</a></li>
+						<li class="menu_li menu_small"><a href="/logout">退出</a></li>
+						<li class="menu_li menu_small"><a href="{{url_for('edit')}}">修改资料</a></li>
+                        <li class="menu_li"><a href="{{url_for('history')}}">历史订单</a></li>
+                        <li class="menu_li"><a href="{{url_for('msg')}}">给水果君留言</a></li>
+						<li class="menu_li"><a href="{{ url_for('questions') }}">常见问题</a></li>
+					</ul>
+				</div>
+				
+				<div id="submit">
+					<button type="button" id="test" onclick="javascript:window.location.href='{{ url_for('order') }}'">返回首页</button>
+				</div>
+				
+		  </div>
+		</div>
+		
+		<div id="content">
+			<div id="select">
+			<form action="" method="POST">
+            	<ul>
+                    <li>
+                        <div id="sel_date">
+                            <p>自<input type="text" name="time1" class="datepicker" />至<input type="text" name="time2" class="datepicker" /></p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="btn_in">
+                            <button id="in_date" type=submit onclick="javascript:this.form.action='{{ url_for("history") }}'">按日期分类</button>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="btn_in">
+                            <button id="in_order" type=submit onclick="javascript:this.form.action='{{ url_for("history1") }}'">按订单分类</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+			
+			<div class="list">
+				<table class="list_table">
+                	<thead>
+					<tr>{% for message in get_flashed_messages() %}
+      		<td>{{message}}</td>
+    		{% endfor %}<tr>
+                    	<tr>
+                        	<td class="list_date">日期</td>
+                            <td>
+                            	<table>
+                                	<tr>
+                                    	<td class="list_item">名称</td>
+                            			<td class="list_quantity">数量</td>
+                            			<td class="list_price">单价</td>
+                           				<td class="list_cost">总价</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+						{% for i in row %}
+                    	<tr><td class="list_padding" colspan="2"><div></div></td></tr>
+                    	<tr>
+                        	<td class="list_date">
+                            	<table>
+                                	<tr><td>{{ i[0][0] }}
+												{% if i[0][6]==1 %}
+														{% if i[0][1]==1 %}
+														周一
+														{% elif i[0][1]==2 %}
+														周二
+														{% elif i[0][1]==3 %}
+														周三
+														{% elif i[0][1]==4 %}
+														周四
+														{% elif i[0][1]==5 %}
+														周五
+														{% endif %}
+												{% endif %}													
+										</td>
+									{% if i[0][6]==0 %}
+									<td class="unpaid"><a href="{{ url_for('re') }}">（未付款）</a></td></tr>                                   
+									{% endif %}
+									<tr><td colspan="2" class="oid">订单号：{{ i[0][5] }}</td></tr>
+                                </table>
+                            </td>
+                            <td>
+                            	<table>
+									{% for j in i%}
+                                	<tr>
+                                    	<td class="list_item">{{ j[2] }}</td>
+                         			    <td class="list_quantity">{{ j[3] }}个</td>
+                          				<td class="list_price">{{ j[4] }}元/个</td>
+                         				<td class="list_cost">{{ j[3]*j[4]}}元</td>
+                                    </tr>
+									{% endfor %}
+                                </table>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        <!--tr><td class="list_padding"  colspan="2"><div></div></td></tr>
+                        <tr>
+                        	<td class="list_date">2013/3/22 周五</td>
+                            <td>
+                            	<table>
+                                	<tr>
+                                    	<td class="list_item">苹果</td>
+                         			    <td class="list_quantity">2个</td>
+                          				<td class="list_price">3元/个</td>
+                         				<td class="list_cost">6元</td>
+                                    </tr>
+                                    <tr>
+                                    	<td class="list_item">香蕉</td>
+                         			    <td class="list_quantity">2个</td>
+                          				<td class="list_price">1元/个</td>
+                         				<td class="list_cost">2元</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr-->
+                    </tbody>
+                </table>
+			</div>
+	
+			
+		</div>
+	</body>
+</html>
