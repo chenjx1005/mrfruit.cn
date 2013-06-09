@@ -1,0 +1,14 @@
+{% for message in get_flashed_messages() %}
+{{message}}<br />
+    	 {% endfor %}
+<form action="" method="POST">
+	手机号：<input type="text" name="tel"/> 
+	水果id：<input type="text" name="f_id"/>
+	数量：<input type="text" name="numbers"/>
+	送货时间（例:2013-05-03）：<input type="text" name="time"/>
+	<input type="submit" value="Submit" />
+</form>
+水果id 水果名对照表<br />
+{% for i in f_list %}
+	{{i[0]}}---{{i[1]}}<br />
+{% endfor %}

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<!--从这里--><script type="text/javascript" src="../static/js/jquery-1.8.3.min.js"></script><!--到这里-->
+<meta charset="UTF-8" >
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+<style type="text/css" >
+html, body, h1, form, fieldset, legend, ol, li {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background:url(./static/images/bg.png);
+	background-repeat:no-repeat;
+	color: #111111;
+	font-family: Tahoma, Verdana, STHeiTi, simsun, sans-serif;
+	padding: 20px;
+}
+#da{
+	position:absolute;
+	margin-top:50px;
+	margin-left:400px;
+}
+#title{
+	color:#e17022;
+	font-size: 26px;
+	font-weight: bold;
+}
+form#payment {
+	padding: 20px;
+	width: 400px;
+}
+form#payment fieldset {
+	border: none;
+	margin-bottom: 10px;
+}
+form#payment fieldset:last-of-type {
+	margin-bottom: 0;
+}
+form#payment legend {
+	color:#e17022;
+	font-size: 16px;
+	font-weight: bold;
+	padding-bottom: 10px;
+	text-shadow: 0 1px 1px #eeeeee;
+}
+
+form#payment fieldset fieldset legend {
+	font-weight: normal;
+	padding-bottom: 0;
+} 
+
+form#payment ol li {
+	line-height: 30px;
+	list-style: none;
+	padding: 5px 10px;
+	margin-bottom: 2px;
+}
+form#payment ol ol li {
+	background: none;
+	border: none;
+	float: left;
+}
+form#payment label {
+	float: left;
+	font-size: 13px;
+	width: 110px;
+}
+form#payment fieldset fieldset label {
+	background:none no-repeat left 50%;
+	line-height: 20px;
+	padding: 0 0 0 30px;
+	width: auto;
+}
+
+form#payment fieldset fieldset label:hover {
+	cursor: pointer;
+}
+form#payment input:not([type=radio]),
+form#payment textarea {
+	background: #ffffff;
+	border: none;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	font: italic 13px Georgia, "Times New Roman", Times, serif;
+	outline: none;
+	padding: 5px;
+	width: 200px;
+}
+form#payment select {
+	background: #ffffff;
+	border:none; 
+	font: italic 13px Georgia, "Times New Roman", Times, serif;
+	color:#000;
+	outline: none;
+	padding: 5px;
+	width: 200px;
+}
+form#payment input:not([type=submit]):focus,
+form#payment textarea:focus {
+	background: #eeeeee;
+}
+
+form#payment button {
+	background: #e17022;
+	border: none;
+	color: #ffffff;
+	display: block;
+	font: "黑体";
+	margin: auto;
+	padding: 7px 25px;
+	text-shadow: 0 1px 1px #cccccc;
+}
+form#payment button:hover {
+	background: #1e2506;
+	cursor: pointer;
+}
+
+
+
+
+</style>
+<title>注册才能吃水果哦~</title>
+<body>
+<div id="da">
+
+<p id="title">Oh ，你还没有注册？</p>
+
+{% for message in get_flashed_messages() %}
+      			<div class=flash>{{message}}</div>
+    		{% endfor %}
+<form id=payment action="" method='POST'>
+	<fieldset>
+		<legend>基本信息</legend><!-- 为fieldset添加标题 -->
+		<ol>
+            <li>
+				<label for=phone>手机号码</label>
+				<input id=phone name=phone type=tel placeholder="最好使用长号注册！！" required onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+			</li>
+            <li>
+				<label for=email>
+                学号
+                </label>
+				<input id=stuid name=stuid type=text placeholder="学号是您身份的唯一识别！！" required>
+			</li>
+			<li>
+				<label for=email>常用邮箱</label>
+				<input id=email name=email type=email placeholder="我们会每周给您发送订单结算情况" required>
+			</li>
+		</ol>
+	</fieldset>
+	<fieldset>
+		<legend>配送信息</legend>
+		<ol>
+            <li>
+				<label for=name>
+                姓名
+                </label>
+				<input id=name name=name type=text placeholder="水小果" required >
+			</li>
+			<li>
+				<label for=address>
+                所在校区
+                </label>
+                <select id="address" name=address  placeholder="紫金港" required >
+                	<option value="zjg">紫金港</option>
+                    <option value="yq">玉泉</option>
+                </select>
+			</li><!--从这里-->
+            <li id="liforad2">
+				<label for=address2 id="lableforad2">
+                楼&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号
+                </label>
+                <select id=address2 name=address2 required >
+                	<option value="青溪">青溪</option>
+                    <option value="丹阳">丹阳</option>
+                    <option value="蓝田">蓝田</option>
+                    <option value="紫云">紫云</option>
+                    <option value="碧峰">碧峰</option>
+                    <option value="白沙">白沙</option>
+                    <option value="翠柏">翠柏</option>
+                </select>
+			</li>
+            <li id='remove'><label>&nbsp;</label><select id=address22 name=address22  placeholder='1舍' required ></select></li>
+           <!--到这里-->
+            <li>
+				<label for=address3>
+                房间
+                </label>
+                <input id=address3 name=address3 type=text placeholder="000" required >
+			</li>
+		</ol>
+	</fieldset>
+	<fieldset>
+		<button type=submit>注册！可以吃水果了~</button>
+	</fieldset>
+</form>
+</div>
+</body>
+<!-- 从这里-->
+<script>
+	$(document).ready(function(){  
+		//初始化
+		option(4);
+		<!--3.13新改-->
+		$("select#address2").change(function(){
+			switch($("select#address2 option:selected").val()){
+				case "青溪": 
+					option(4);
+					break;
+				case "丹阳": 
+					option(6);
+					break;
+				case "蓝田": 
+					option(6);
+					break;
+				case "紫云": 
+					option(5);
+					break;
+				case "碧峰": 
+					option(5);
+					break;
+				case "白沙": 
+					option(4);
+					break;
+				case "翠柏": 
+					option(4);
+					break;
+			}
+			});
+		
+		//1~几的函数
+		function option(i){
+			$("select#address22 option").each(function(){
+    			$(this).remove();
+  			 });
+			var j = 1;
+			for(; j <= i; j++){
+				$("#address22").append("<option value='"+j+"'>"+j+"舍</option>");
+			}
+		}
+		
+		
+		
+		//玉泉紫金港，发生改变
+		$("select#address").change(function(){
+			
+			//如果切换到紫金港
+		if($("select#address option:selected").val() == "zjg"){
+			//变成青溪什么的选
+			$("select#address2").replaceWith("<select id=address2 name=address2  placeholder='青溪' required ><option value='青溪'>青溪</option><option value='丹阳'>丹阳</option><option value='蓝田'>蓝田</option><option value='紫云'>紫云</option><option value='碧峰'>碧峰</option><option value='白沙'>白沙</option><option value='翠柏'>翠柏</option></select></li> <li id='remove'><label>&nbsp;</label><select id=address22 name=address22  placeholder='1舍' required ></select>");
+			//默认1~4舍
+			for(j = 1; j <= 4; j++){
+				$("#address22").append("<option value='"+j+"'>"+j+"舍</option>");
+			}
+			//学园切换
+			$("select#address2").change(function(){
+			switch($("select#address2 option:selected").val()){
+				case "青溪": 
+					option(4);
+					break;
+				case "丹阳": 
+					option(6);
+					break;
+				case "蓝田": 
+					option(6);
+					break;
+				case "紫云": 
+					option(5);
+					break;
+				case "碧峰": 
+					option(5);
+					break;
+				case "白沙": 
+					option(4);
+					break;
+				case "翠柏": 
+					option(4);
+					break;
+			}
+			});
+		}
+		
+		if($("select#address option:selected").val() == "yq"){
+			
+			$("select#address2").replaceWith("<select id=address2 name=address2  placeholder='1舍' required ></select>");
+			$("li#remove").replaceWith("");
+			$("select#address2 option").each(function(){
+    			$(this).remove();
+  			 });
+			for(j = 1; j <= 32; j++){
+				
+				$("#address2").append("<option value='"+j+"'>"+j+"舍</option>");
+			}
+		}
+		});
+		
+		
+	});
+	
+</script>
+<!--到这里-->

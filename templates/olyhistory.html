@@ -103,7 +103,6 @@
                 	<ul>
                     	<li class="menu_li"><a href="{{url_for('history')}}">历史订单</a></li>
                         <li class="menu_li"><a href="{{url_for('msg')}}" target="_blank">给水果君留言</a></li>
-						<li class="menu_li"><a href="{{ url_for('questions') }}" target="_blank">常见问题</a></li>
                         <li class="menu_li"><a href="http://page.renren.com/601612744" target="_blank">加我人人</a></li>
                        
                     </ul>
@@ -117,26 +116,6 @@
 		</div>
 		<div class="render"></div>
 		<div id="content">
-			<div id="select">
-			<form action="" method="POST">
-            	<ul>
-                    <li>
-                        <div id="sel_date">
-                            <p>自<input type="text" name="time1" class="datepicker" />至<input type="text" name="time2" class="datepicker" /></p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="btn_in">
-                            <button id="in_date" type=submit onclick="javascript:this.form.action='{{ url_for("history") }}'">按日期分类</button>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="btn_in">
-                            <button id="in_order" type=submit onclick="javascript:this.form.action='{{ url_for("history1") }}'">按订单分类</button>
-                        </div>
-                    </li>
-                </ul>
-            </div>
 			
 			<div class="list">
 				<table class="list_table">
@@ -145,7 +124,6 @@
       		<td>{{message}}</td>
     		{% endfor %}<tr>
                     	<tr>
-                        	<td class="list_date">日期</td>
                             <td>
                             	<table>
                                 	<tr>
@@ -159,48 +137,25 @@
                         </tr>
                     </thead>
                     <tbody>
-						{% for i in row %}
                         
                     	<tr class="page"><td class="list_padding" colspan="2"><div></div></td></tr>
                     	<tr class="page">
                         	<td class="list_date">
-                            	<table>
-                                	<tr><td>{{ i[0][0] }}
-												{% if i[0][6]==1 %}
-														{% if i[0][1]==1 %}
-														周一
-														{% elif i[0][1]==2 %}
-														周二
-														{% elif i[0][1]==3 %}
-														周三
-														{% elif i[0][1]==4 %}
-														周四
-														{% elif i[0][1]==5 %}
-														周五
-														{% endif %}
-												{% endif %}													
-										</td>
-									{% if i[0][6]==0 %}
-									<td class="unpaid"><a href="{{ url_for('re') }}">（未付款）</a></td></tr>                                   
-									{% endif %}
-									<tr><td colspan="2" class="oid">订单号：{{ i[0][5] }}</td></tr>
-                                </table>
                             </td>
                             <td>
                             	<table>
-									{% for j in i%}
-                                	<tr>
-                                    	<td class="list_item">{{ j[2] }}</td>
-                         			    <td class="list_quantity">{{ j[3] }}个</td>
-                          				<td class="list_price">{{ j[4] }}元/个</td>
-                         				<td class="list_cost">{{ j[3]*j[4]}}元</td>
-                                    </tr>
+									{% for j in row%}
+                                                <tr>
+                                                    <td class="list_item">{{ j[0] }}</td>
+                                                    <td class="list_quantity">{{ j[1] }}个</td>
+                                                    <td class="list_price">{{ j[2] }}元/个</td>
+                                                    <td class="list_cost">{{ j[2]*j[1]}}元</td>
+                                                </tr>
 									{% endfor %}
                                 </table>
                             </td>
                         </tr>
                         
-                        {% endfor %}
                         
                     </tbody>
                     <tfoot>

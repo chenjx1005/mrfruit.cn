@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<meta charset="UTF-8" >
+<script type="text/javascript" src="../static/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../static/js/history.js"></script>
+<!--newnew删掉<script type="text/javascript" src="js/changeaddress.js"></script>-->
+<link rel="stylesheet" type="text/css" media="screen" href="../static/css/history.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="../static/css/window.css"/>
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+<title>看看我以前都订过什么水果~</title>
+<body>
+
+<header>
+<div id="basicinfo">
+<form id="basic">
+	<fieldset>
+    	<table>
+			<!--  <thead><th>基本信息</th><th></th></thead>  -->
+        	<tbody>
+        		<tr>
+            		<td class="items">手机</td>
+                	<td>{{ session.phone }}</td>
+            	</tr>
+            	<tr>
+            		<td class="items">学号</td>
+                	<td>{{ session.stuid }}</td>
+            	</tr>
+                <tr>
+            		<td class="items">姓名</td>
+                	<td>{{ session.name }}</td>
+            	</tr>
+            	<tr>
+            		<td class="items">地址</td>
+					{% if session.campus=="yq" %}
+                	<td>玉泉{{ session.building }}{{ session.room }}</td>
+					{% elif session.campus=="zjg" %}
+					<td>紫金港{{ session.building }}{{ session.room }}</td>
+					{% endif %}
+            	</tr>
+         	</tbody>
+        </table>
+        <table class="infobtn">
+                <tr>
+                	<td><a href="{{url_for('edit')}} "><button class="info" id="tochange" type="button" onclick="javascript:window.location.href='{{url_for('edit')}}'">修改资料</button></a></td>
+                	<td><a href="{{url_for('logout')}} "><button class="info" id="logout" type="button" onclick="javascript:window.location.href='{{url_for('logout')}}'">退出登陆</button></a></td>
+                </tr>
+        	</tbody>
+		</table>
+        <table id="points">
+        	<tr>
+            	<td class="items">积分</td><td>{{ session.score }}个苹果</td>
+            </tr>
+        </table>
+        <table class="infobtn">
+                <tr>
+                	<td><button id="pointsbtn" class="info" type="button">怎么获得积分呢？</button></td>
+                </tr>
+        	</tbody>
+		</table>
+        <table class="btn">
+        		<tr>
+                	<td><a href="{{ url_for('order') }}"><button type="button" onclick="javascript:window.location.href='{{ url_for('order') }}'">返回订购水果</button></a></td>
+                </tr>
+                <tr>
+                	<td><a href="{{url_for('msg')}}"><button type="button" onclick="javascript:window.location.href='{{url_for('msg')}}'">给水果君留言</button></a></td>
+                </tr>
+                <tr>
+                	<td><a href="{{ url_for('questions') }}"><button type="button" onclick="javascript:window.location.href='{{ url_for('questions') }}'">常见问题问答</button></a></td>
+                </tr>
+        	</tbody>
+		</table>
+	</fieldset>
+</form>
+</div>
+
+
+
+</header>
+
+
+<form>
+	<table id="guide">
+        <tbody>
+          	<tr><td>今天是：</td><td id="now"></td><td></td><td id="now2"></td></tr>
+            <tr></tr>
+            </tr> 
+        </tbody>
+	</table>
+
+</form>
+
+<section><form>
+	<table id="cal" >
+    <tbody>
+	<tr>{% for message in get_flashed_messages() %}
+      		<td>{{message}}</td>
+    		{% endfor %}<tr>
+    	<tr>
+        	<td>时间</td>
+            <td></td>
+            <td class="fruitslist">水果</td>
+            <td class="dailytotal">小计</td>
+        </tr>
+		{% for i in row %}
+    	<tr>
+        	<td class="date">{{ i[0][0] }}</td>
+            {% if i[0][1]==1 %}
+			<td class="weekday">周一</td>
+			{% elif i[0][1]==2 %}
+			<td class="weekday">周二</td>
+			{% elif i[0][1]==3 %}
+			<td class="weekday">周三</td>
+			{% elif i[0][1]==4 %}
+			<td class="weekday">周四</td>
+			{% elif i[0][1]==5 %}
+			<td class="weekday">周五</td>
+			{% endif %}
+            <td class="fruitslist">
+            	<table>
+					{% for j in i%}
+                	<tr>
+                    	<td>{{ j[2] }}</td>
+                        <td>x</td>
+                        <td>{{ j[3] }}</td>
+                        
+                        <td>{{ j[3]*j[4]}}元</td>
+                    </tr>
+					{% endfor %}
+                </table>
+            </td>
+            <td>{{price[loop.index0]}}元</td>
+			<td><a href="{{ url_for('receive',id=i[0][5]) }}"><button class="get" type="button" onclick="javascript:window.location.href='{{ url_for('receive',id=i[0][5]) }}'">没有收到水果？点我点我</button></a></td>
+        </tr>
+		
+		{% endfor %} 	
+        </tbody>
+	</table> </form>
+</section>
+
+<div id="explain">
+	<img class="close" src="../static/images/close.png">
+	<h class="pointstitle">水果君积分规则</h>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+	<h2 class="pointsquestion">如何获得积分？</h2>
+	<p>积分和人民币比例为10:1，每消费1元人民币，得10积分，以此类推。</p>
+    <br/>
+   
+	<h2 class="pointsquestion">积分能做什么？</h2>
+	<p>1、每月获得积分最高的十位同学将得到“健康水果达人”称号，下个月所送水果的标签将会使用达人专属标签，名单在水果君网站及人人主页发布。</p>
+	<p>2、每月月末推出积分换购水果活动，可以用积分换购特种水果，仅限积分换购。请关注水果君网站，及人人公共主页。</p>
+	<p>3、（即将上线）凭借积分，可以换购求是木屋特供鲜果汁一杯。</p>
+    <br/>
+   
+	<h2 class="pointsquestion">积分使用时限？</h2>
+	<p>积分每月清空一次，即每月1日0点00分，全部积分清零，重新累积。<p>
+    <br/>
+	
+	<h2 class="pointsquestion">水果价格变动?</h2>
+	<p>水果价格会根据天气变化、品种变化以及上市季节而变动，水果新闻会及时预告即将上市水果，适当的季节吃适当的水果，请密切关注。<p>
+    <br/>
+	
+    <br/>
+	<p class="pointsfoot">最终解释权归水果君运营团队所有</p>
+</div>
+
+
+
+<div id="choosedate"><form action="" method="POST">
+	<table>
+    	<thead>
+        	<td id="newstitle" colspan="6">请选择你想查看的日期范围</td>
+        </thead>
+        <tbody>
+        <tr>
+        	<td>
+            	<select name="year1">
+                	<option value="2012">2012</option>
+                    <option value="2013" selected>2013</option>
+                </select>年
+            </td>
+            <td>
+            	<select name="month1">
+                	<option value="01" selected>1</option>
+                    <option value="02" >2</option>
+					<option value="03" >3</option>
+					<option value="04" >4</option>
+					<option value="05" >5</option>
+					<option value="06" >6</option>
+					<option value="07" >7</option>
+					<option value="08" >8</option>
+					<option value="09" >9</option>
+					<option value="10" >10</option>
+					<option value="11" >11</option>
+					<option value="12" >12</option>
+                </select>月
+            </td>
+            <td>
+            	<select name="day1">
+					{% for i in range(1,32)%}
+					{% if i<10 %}
+                	<option value="0{{i}}">{{i}}</option>
+                    {% else %}
+					<option value="{{i}}">{{i}}</option>
+					{% endif %}
+					{% endfor %}
+                </select>日
+            </td>
+            <td class="to">
+            	
+            </td>
+            <td class="to">
+            	至
+            </td>
+            <td>
+            	<select name="year2">
+                	<option value="2012">2012</option>
+                    <option value="2013" selected>2013</option>
+                </select>年
+            </td>
+            <td>
+            	<select name="month2">
+                	<option value="01" selected>1</option>
+                    <option value="02" >2</option>
+					<option value="03" >3</option>
+					<option value="04" >4</option>
+					<option value="05" >5</option>
+					<option value="06" >6</option>
+					<option value="07" >7</option>
+					<option value="08" >8</option>
+					<option value="09" >9</option>
+					<option value="10" >10</option>
+					<option value="11" >11</option>
+					<option value="12" >12</option>
+                </select>月
+            </td>
+            <td>
+            	<select name="day2">
+					{% for i in range(1,32)%}
+					{% if i<10 %}
+                	<option value="0{{i}}">{{ i }}</option>
+                    {% else %}
+					<option value="{{i}}">{{ i }}</option>
+					{% endif %}
+					{% endfor %}
+                </select>日
+            </td>
+            <td class="to"></td>
+            <td>
+            	<button type=submit>选好了~</button>
+            </td>
+        </tr>
+        </tbody>
+    </table></form>
+</div>
+
+
+</div>
+
+  
+
+
+</body>

@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="description" content="水果君,MrFruit" />
+		<meta name="keywords" content="水果君,MrFruit" />
+		<link rel="alternate" type="application/rss+xml" title="RSS 2.0 - all posts" href="http://mrfuit.com/feed/" />
+		<title>订单内容</title>
+		<link rel="stylesheet" type="text/css" media="all" href="../static/css/olylist.css" />
+		<link rel="shortcut icon" href="../static/favicon.ico">
+        <script src="../static/js/jquery-1.9.1.js"></script>
+        
+		<style>
+		
+			button{
+				float:left;
+				font-size:14px;
+				color:black;
+				-moz-border-radius: 6px;
+				-khtml-border-radius: 6px;
+				-webkit-border-radius: 6px;
+				border-radius: 6px;
+				border: 1px solid #F69;
+				background:#F69;
+				width:130px;
+				height:30px;
+				margin-top:8px;
+				margin-left:30px;
+				padding-left:5px;
+				
+			}
+			
+			button:hover {
+				border: 1px solid #FFF;
+				background:#FFF;
+				color:#F69;
+				cursor: pointer;
+			}
+			#background {
+					background-color:rgba(255,255,255,0.8);
+					height:100%;
+					width:100%;
+					z-index:6000;
+					position:fixed;
+					top:0px;
+			}
+			
+			#notice {
+				text-align:center;
+				height:250px;
+				width:350px;
+				padding:20px;
+				background-color:#FFF;
+				margin-left:auto;
+				margin-right:auto;
+				margin-top:100px;
+				white-space: normal;
+				-webkit-box-shadow: 10px 15px 30px rgba(0, 0, 0, 0.2);
+				-moz-box-shadow: 10px 15px 30px rgba(0, 0, 0, 0.2);
+				box-shadow: 10px 15px 30px rgba(0, 0, 0, 0.2);
+			}
+			
+			#notice p {
+				font-size:16px;
+				line-height:24px;
+				color:#999;
+			}
+			
+			#back {
+				font-size:24px;
+				line-height:33px;
+				color:#F69;
+			}
+		
+		</style>
+	</head>
+	<body onload="init()">
+		<div id="top">
+			<div id="header">
+				
+				<div id="logo">
+					<a href="{{ url_for('order') }}"><img src="../static/images/oly/logo.png" \></a>
+				</div>
+				
+				<div id="menu">
+					<ul>
+						<li class="menu_li">订单总计：{{ total_fee }}元</li>
+					</ul>
+				</div>
+				<div id="submit">
+                	
+					<button style="width:160px;margin-top:20px;margin-left:100px;"  onclick="javascript:window.location.href='/loreal_re1'">确认无误，提交订单</button>
+                    <button  type="button" style="width:100px;margin-top:20px;margin-left:10px;" onclick="javascript:window.location.href='/loreal'">返回修改</button>
+				</div>
+                
+				
+			</div>
+		</div>
+		
+		<div id="content">
+        	<table id="week">
+            	<tr>
+                	<td width="140" class="table_date">
+                    	<div class="list_date">
+                        	<div  class="img_date">
+                            	<img src="../static/images/oly/olyfull_basket_focus.png" />
+                            </div>
+                            <div class="date">
+                            </div>
+                        </div>
+                    </td>
+                    <td width="548">
+                    	<div class="list">
+                            <table class="list_table">
+                                <thead>
+                                    <tr>
+                                        <td>
+                                            <table>
+                                                <tr>
+                                                    <td class="list_item">名称</td>
+                                                    <td class="list_quantity">数量</td>
+                                                    <td class="list_price">单价</td>
+                                                    <td class="list_cost">总价</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="list_padding"><div></div></td></tr>
+                                    <tr>
+                                        <td>
+                                            <table>
+											{% for j in row%}
+                                                <tr>
+                                                    <td class="list_item">{{ j[0] }}</td>
+                                                    <td class="list_quantity">{{ j[1] }}个</td>
+                                                    <td class="list_price">{{ j[2] }}元/个</td>
+                                                    <td class="list_cost">{{ j[2]*j[1]}}元</td>
+                                                </tr>
+											{% endfor %}
+                                            </table>
+                                        </td>
+                                    </tr>
+                         
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                
+            </table>
+		</div>
+        <div id="background" style="visibility:hidden;">
+            <div id="notice">
+                <p><span id="back">谢谢亲为浙大贫困学子献出的美丽爱心！<br/></span><br/>23日（周四）10:00-18:00，小雅在西溪校区北园18舍大厅等待与你相见哦～届时凭学号及电话号码取货付款，如果那天有事，可以让朋友带领哦！</p>
+                <button onclick="">继续浏览义卖产品</button><button onclick="">返回水果君</button>
+            </div>
+        </div>
+	</body>
+</html>
+
+<script>
+	function show(){
+		$("#background").css("visibility","visible");
+	}
+</script>

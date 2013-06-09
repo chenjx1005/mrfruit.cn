@@ -17,8 +17,7 @@
     		{% for message in get_flashed_messages() %}
       			<div class=flash>{{message}}</div>
     		{% endfor %}
-                <ol>
-					支付宝测试用帐号：手机18768114204 学号000123 
+                <ol> 
                     <li>
                         <label for=phone>手机号码</label>
                         <input id=phone name=phone type=tel placeholder="建议使用短号哦亲~" required autofocus  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">

@@ -7,6 +7,7 @@
 		<link rel="alternate" type="application/rss+xml" title="RSS 2.0 - all posts" href="http://mrfuit.com/feed/" />
 		<title>水果君列表</title>
 		<link rel="stylesheet" type="text/css" media="all" href="../static/css/index.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="../static/css/header.css" />
 		<link rel="shortcut icon" href="../static/favicon.ico">
 		<script src="../static/js/order.js"></script>
         <script src="../static/js/jquery-1.9.1.js"></script>
@@ -22,179 +23,287 @@
 				
 				<div id="menu">
 					<ul>
-                    	<li class="menu_li menu_big"><a href="#">水果君爱你，{{ session.name }}</a></li>
-						<li class="menu_li menu_small"><a href="/logout">退出</a></li>
+                    	<li class="menu_li menu_big"><a>水果君爱你，{{ session.name }}</a></li>
+						<li class="menu_li menu_small"><a href="/logout">退出登陆</a></li>
 						<li class="menu_li menu_small"><a href="{{url_for('edit')}}">修改资料</a></li>
-                        <li class="menu_li"><a href="{{url_for('history')}}">历史订单</a></li>
-                        <li class="menu_li"><a href="{{url_for('msg')}}">给水果君留言</a></li>
-						<li class="menu_li"><a href="{{ url_for('questions') }}">常见问题</a></li>
+                        <li class="menu_li"><a onmouseover="explainIn();" onmouseout="explainOut();">积分：{{ session.score }}分</a></li>
+                        <li class="menu_li menu_small"><a onmouseover="explainIn();" onmouseout="explainOut();">积分规则是什么？</a></li>
+                        
 					</ul>
 				</div>
+                
+                <div id="explain">
+                    <p>亲们~每一次提交订单每满10元即可积1分（也就是说10元以下没有积分哦，不论11元还是19元都可以拿到1分！20元就可以拿2分啦！）<br/></p>
+                    <p>有人问，积分能干什么？水果君正在为大家准备丰厚的积分换礼，敬请期待！~</p>
+                </div>
 				
-				<div class="top_date" onclick='clickOn("date1")'>
-					<div class="img_date">
-						<img id="date1" src="../static/images/blank_basket_notfocus.png" \>
-					</div>
-					<div class="date">
-						<p id="date11">周一</p>
-						<p id="date12"></p>
-					</div>
-				</div>
+                <div id="navi">
+                	<ul>
+                    	<li class="menu_li"><a href="{{url_for('history')}}">历史订单</a></li>
+                        <li class="menu_li"><a href="{{url_for('msg')}}" target="_blank">给水果君留言</a></li>
+						<li class="menu_li"><a href="{{ url_for('questions') }}" target="_blank">常见问题</a></li>
+                        <li class="menu_li"><a href="http://page.renren.com/601612744" target="_blank">加我人人</a></li>
+                       
+                    </ul>
+                </div>
 				
-				<div class="top_date" onclick='clickOn("date2")'>
-					<div class="img_date">
-						<img id="date2" src="../static/images/blank_basket_notfocus.png" \>
-					</div>
-					<div class="date">
-						<p id="date21">周二</p>
-						<p id="date22">3/25</p>
-					</div>
-				</div>
-				
-				<div class="top_date" onclick='clickOn("date3")'>
-					<div class="img_date">
-						<img id="date3" src="../static/images/blank_basket_notfocus.png" \>
-					</div>
-					<div class="date">
-						<p id="date31">周三</p>
-						<p id="date32">3/26</p>
-					</div>
-				</div>
-				
-				<div class="top_date" onclick='clickOn("date4")'>
-					<div class="img_date">
-						<img id="date4" src="../static/images/blank_basket_notfocus.png" \>
-					</div>
-					<div class="date">
-						<p id="date41">周四</p>
-						<p id="date42">3/27</p>
-					</div>
-				</div>
-				
-				<div class="top_date" onclick='clickOn("date5")'>
-					<div class="img_date">
-						<img id="date5" src="../static/images/blank_basket_notfocus.png" \>
-					</div>
-					<div class="date">
-						<p id="date51">周五</p>
-						<p id="date52">3/28</p>
-					</div>
-				</div>
 				<div id="submit">
 					<button id="test">提交订单</button>
 				</div>
-                <div id="pops">
-                    <div id="pop1" class="popover fade bottom in" style="margin-left: 205px; display: block;">
-                        <div class="pop_arrow"><img src="../static/images/arrow.png"/></div>
-                        <div id="pop11" class="popover-content">
-                            <table id="pop1_table">
-                                <tfoot><tr><td colspan="4">总计：0元</td></tr></tfoot>
-                            </table>
-                        </div>
-                       
-                    </div>
-                    
-                    <div id="pop2" class="popover fade bottom in" style="margin-left: 317px; display: block;">
-                        <div class="pop_arrow"><img src="../static/images/arrow.png"/></div>
-                        <div id="pop21" class="popover-content">
-                        	 <table id="pop2_table">
-                                <tfoot><tr><td colspan="4">总计：0元</td></tr></tfoot>
-                            </table>
-                       </div>
-                    </div>
-                    
-                    <div id="pop3" class="popover fade bottom in" style=" margin-left: 429px; display: block;">
-                        <div class="pop_arrow"><img src="../static/images/arrow.png"/></div>
-                        <div id="pop31" class="popover-content">
-                        	 <table id="pop3_table">
-                                <tfoot><tr><td colspan="4">总计：0元</td></tr></tfoot>
-                            </table>
-                        </div>
-                    </div>
-                    
-                    <div id="pop4" class="popover fade bottom in" style=" margin-left: 541px; display: block;">
-                        <div class="pop_arrow"><img src="../static/images/arrow.png"/></div>
-                        <div id="pop41" class="popover-content">
-                        	 <table id="pop4_table">
-                                <tfoot><tr><td colspan="4">总计：0元</td></tr></tfoot>
-                            </table>
-                       </div>
-                    </div>
-                    
-                    <div id="pop5" class="popover fade bottom in" style=" margin-left: 653px; display: block;">
-                        <div class="pop_arrow"><img src="../static/images/arrow.png"/></div>
-                        <div id="pop51" class="popover-content">
-                        	 <table id="pop5_table">
-                                <tfoot><tr><td colspan="4">总计：0元</td></tr></tfoot>
-                            </table>
-                       </div>
-                    </div>
-                </div>
+                
 				
 			</div>
             
 		</div>
     
-		<div id="render"></div>
+		<div class="render"></div>
 		<div id="content">
-		{% for fruit in fruits %}
-			<div class="for_sale">
-				<img class="pic_fr" src="../static/images/{{ fruit[0] }}.png">
-				<div class="sale_word">
-					<p class="p_title">{{ fruit[1] }}</p>
+        	<div id="cnt_fruits">
+            {% for fruit in fruits %}
+                <div class="for_sale">
+                    <img class="pic_fr" src="../static/images/{{ fruit[0] }}.png">
+                    <div class="sale_word">
+                        <p class="p_title">{{ fruit[1] }}</p>
+                    </div>
+                    <div class="sale_price">
+                        <p class="p_normal">{{ fruit[2] }}元/个</p>
+                        <p class="p_normal">合{{ fruit[3] }}元/斤</p>
+                    </div>				
+                    <div class="sale_season">
+                    {% if fruit[4]==1 %}
+                        <img class="season" src="../static/images/season_in.png">
+                    {% elif fruit[4]==2 %}
+                        <img class="season" src="../static/images/popular.png">
+                    {% endif %}
+                    </div>
+                    <div class="blank"></div>
+                    {% if fruit[5]==0 %}
+                    <div class="drop_in" onclick="addToBascket('f{{ fruit[0] }}',1)">
+                        <button type="button">放进水果篮</button>
+                    </div>
+                    {% elif fruit[5]==1 %}
+                    <div class="drop_in special" onclick="addSpecially('f{{ fruit[0] }}',1,1)">
+                        <button type="button">周一限定</button>
+                    </div>
+                    {% elif fruit[5]==2 %}
+                    <div class="drop_in special" onclick="addSpecially('f{{ fruit[0] }}',1,2)">
+                        <button type="button">周二限定</button>
+                    </div>
+                    {% elif fruit[5]==3 %}
+                    <div class="drop_in special" onclick="addSpecially('f{{ fruit[0] }}',1,3)">
+                        <button type="button">周三限定</button>
+                    </div>
+                    {% elif fruit[5]==4 %}
+                    <div class="drop_in special" onclick="addSpecially('f{{ fruit[0] }}',1,4)">
+                        <button type="button">周四限定</button>
+                    </div>
+                    {% elif fruit[5]==5 %}
+                    <div class="drop_in special" onclick="addSpecially('f{{ fruit[0] }}',1,5)">
+                        <button type="button">周五限定</button>
+                    </div>
+                    {% endif %}
+               </div>
+            {% endfor %}
+            <!--
+            	<div class="for_sale" style="width:330px;padding-left:30px;border:0px;"  onclick="fadeinoly();" onmouseout="fadeoutoly();">>
+                <div class="for_sale" style="width:330px;padding-left:30px;border:0px;"  onclick="javascript:window.location.href='/loreal'">
+                    <img class="pic_fr" src="../static/images/olylogo.jpg">
+               </div>
+               <
+               <div id="olyno" class="for_sale note popover fade bottom in"  style="margin-left:650px;border:0px;">
+                    <p>亲们，欧莱雅义卖19日开始~敬请期待！</p>
+               </div>
+               -->
+               
+            </div>
+            <div id="cnt_cmt">
+            	<div id="cmt_h"><p></p></div>
+				<div id="cmt_p">
+                	<div class="cmt_div">
+                    	<p><span class="cmt_item">物流保证<br/></span><p><br/>保证当天购买的水果18：00前送达，如出现迟到或者未送达情况当天水果免费提供。</p>
+                    </div>
+                    <div class="cmt_div">
+                    	<p><span class="cmt_item">价格保证<br/></span><p><br/>保证同类同规格水果价格不高于校内水果店，如出现同种价格高过水果店的情况，当天此种水果免费。</p>
+                    </div>
+                    <div class="cmt_div">
+						<p><span class="cmt_item">质量保证<br/></span><p><br/>保证水果新鲜品质，如出现质量不满意情况，工作人员将及时与您联系协商解决。</p>
+                    </div>
+                    <div class="cmt_div">
+						<p><span class="cmt_item">服务保证<br/></span><p><br/>您的任何留言信息可通过客服电话、水果君人人主页（留言板）以及水果君网站（mrfruit.cn）进行反映，我们保证在24个小时内给处理反馈，否则赠送价值10元水果。</p>
+                    </div>
 				</div>
-				<div class="sale_price">
-					<p class="p_normal">{{ fruit[2] }}元/个</p>
-					<p class="p_normal">合{{ fruit[3] }}元/斤</p>
-				</div>				
-				<div class="sale_season">
-				{% if fruit[4]==1 %}
-					<img class="season" src="../static/images/season_in.png">
-				{% elif fruit[4]==2 %}
-					<img class="season" src="../static/images/popular.png">
-				{% endif %}
-				</div>
-				<div class="blank"></div>
-				<div class="drop_in" onclick="addToBascket('f{{ fruit[0] }}',1)">
-					<button type="button">放进水果篮</button>
-				</div>
-			</div>
-		{% endfor %}
-		
-			<!--div class="for_sale">
-				<img class="pic_fr" src="../static/images/banana.png">
-				<div class="sale_word">
-					<p class="p_title">香蕉</p>
-					<p class="p_normal">0.8元/个</p>
-					<p class="p_normal">合7.8元/斤</p>
-				</div>
-				<div class="sale_season">
-					<img class="season" src="../static/images/popular.png">
-				</div>
-				<div class="blank"></div>
-				<div class="drop_in" onclick="addToBascket('f2',1)">
-					<button type="button">放进水果篮</button>
-				</div>
-			</div>
-			
-			<div class="for_sale">
-				<img class="pic_fr" src="../static/images/pitaya.png">
-				<div class="sale_word">
-					<p class="p_title">火龙果</p>
-					<p class="p_normal">6元/个</p>
-					<p class="p_normal">合13元/斤</p>
-				</div>
-				<div class="sale_season">
-					<img class="season" src="">
-				</div>
-				<div class="blank"></div>
-				<div class="drop_in" onclick="addToBascket('f3',1)">
-					<button type="button">放进水果篮</button>
-				</div>
-			</div-->
-			
-			
+            </div>
+            <div id="space">
+              <p>copyright ©2013 Mrfruit.cn 版权所有</p></div>
+        </div>
+        <!--水果新闻
+         <div id="background" style="visibility:hidden;" onclick="fade();">
+            <div id="notice">
+                <p><span id="back">水果君又回来啦！<br/></span><br/>水果配送将从5月8日开始，大家现在就可以订购8号及以后的水果了哟~期待与水果的再次触碰！</p>
+            </div>
+        </div>
+        -->
+    
+        <div id="foot">
+            <div id="baskets">
+            <!--不能购买的时候
+            		<div class="top_date">
+                        <div class="img_date" onclick="fadeinNote(1);" onmouseout="fadeoutNote(1);">
+                            <img id="date1" src="../static/images/blank_basket_notfocus.png" \>
+                        </div>
+                        <div class="date">
+                            <p id="date11">周一</p>
+                            <p id="date12"></p>
+                        </div>
+                    </div>-->
+                    
+                	<div class="top_date" onclick='clickOn("date1")'>
+                        <div class="img_date">
+                            <img id="date1" src="../static/images/blank_basket_notfocus.png" \>
+                        </div>
+                        <div class="date">
+                            <p id="date11">周一</p>
+                            <p id="date12"></p>
+                        </div>
+                    </div>
+                    <!--不能购买的时候
+                    <div class="top_date">
+                        <div class="img_date"  onclick="fadeinNote(2);" onmouseout="fadeoutNote(2);">
+                            <img id="date2" src="../static/images/blank_basket_notfocus.png" \>
+                        </div>
+                        <div class="date">
+                            <p id="date21">周二</p>
+                            <p id="date22">3/25</p>
+                        </div>
+                    </div>-->
+            	
+                    
+                    <div class="top_date" onclick='clickOn("date2")'>
+                        <div class="img_date">
+                            <img id="date2" src="../static/images/blank_basket_notfocus.png" \>
+                        </div>
+                        <div class="date">
+                            <p id="date21">周二</p>
+                            <p id="date22">3/25</p>
+                        </div>
+                    </div>
+                   
+                    <div class="top_date" onclick='clickOn("date3")'>
+                        <div class="img_date">
+                            <img id="date3" src="../static/images/blank_basket_notfocus.png" \>
+                        </div>
+                        <div class="date">
+                            <p id="date31">周三</p>
+                            <p id="date32">3/26</p>
+                        </div>
+                    </div>
+                    
+                    <div class="top_date" onclick='clickOn("date4")'>
+                        <div class="img_date">
+                            <img id="date4" src="../static/images/blank_basket_notfocus.png" \>
+                        </div>
+                        <div class="date">
+                            <p id="date41">周四</p>
+                            <p id="date42">3/27</p>
+                        </div>
+                    </div>
+                    
+                    <div class="top_date" onclick='clickOn("date5")'>
+                        <div class="img_date">
+                            <img id="date5" src="../static/images/blank_basket_notfocus.png" \>
+                        </div>
+                        <div class="date">
+                            <p id="date51">周五</p>
+                            <p id="date52">3/28</p>
+                        </div>
+                    </div>
+            
+            
+            <div id="pops">
+            <!--不能购买的时候
+            		<div id="note1" class="note popover fade bottom in" style="margin-left: -5px;"><p>Sorry，您只能订购5月8日之后的水果哦~</p></div>
+                    <div id="note2" class="note popover fade bottom in" style="margin-left: 145px;"><p>Sorry，您只能订购5月8日之后的水果哦~</p></div>-->
+                     <!-- origin-->
+                     <div id="pop1" class="popover fade bottom in" style="margin-left: -65px;">
+                        <div class="pop_arrow"><img src="../static/images/arrow.png"/></div>
+                        <div id="pop11" class="popover-content">
+                            <table id="pop1_table">
+                                <tfoot><tr><td colspan="4">总计：0元</td></tr></tfoot>
+                            </table>
+                            <div class="up" onclick='up("pop1")'>
+                            	<div>
+                            		<img src="../static/images/up.png">
+                                </div>
+                            	<a>收起</a>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    
+                    <div id="pop2" class="popover fade bottom in" style="margin-left: 85px;"> 
+                        <div class="pop_arrow"><img src="../static/images/arrow.png"/></div>
+                        <div id="pop21" class="popover-content">
+                        	 <table id="pop2_table">
+                                <tfoot><tr><td colspan="4">总计：0元</td></tr></tfoot>
+                            </table>
+                            <div class="up" onclick='up("pop2")'>
+                            	<div>
+                            		<img src="../static/images/up.png">
+                                </div>
+                            	<a>收起</a>
+                            </div>
+                       </div>
+                    </div>
+                  
+                    <div id="pop3" class="popover fade bottom in" style=" margin-left: 235px;">
+                        <div class="pop_arrow"><img src="../static/images/arrow.png"/></div>
+                        <div id="pop31" class="popover-content">
+                        	 <table id="pop3_table">
+                                <tfoot><tr><td colspan="4">总计：0元</td></tr></tfoot>
+                            </table>
+                            <div class="up" onclick='up("pop3")'>
+                            	<div>
+                            		<img src="../static/images/up.png">
+                                </div>
+                            	<a>收起</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="pop4" class="popover fade bottom in" style=" margin-left: 385px; ">
+                        <div class="pop_arrow"><img src="../static/images/arrow.png"/></div>
+                        <div id="pop41" class="popover-content">
+                        	 <table id="pop4_table">
+                                <tfoot><tr><td colspan="4">总计：0元</td></tr></tfoot>
+                            </table>
+                            <div class="up" onclick='up("pop4")'>
+                            	<div>
+                            		<img src="../static/images/up.png">
+                                </div>
+                            	<a>收起</a>
+                            </div>
+                       </div>
+                    </div>
+                    
+                    <div id="pop5" class="popover fade bottom in" style=" margin-left: 535px;">
+                        <div class="pop_arrow"><img src="../static/images/arrow.png"/></div>
+                        <div id="pop51" class="popover-content">
+                        	 <table id="pop5_table">
+                                <tfoot><tr><td colspan="4">总计：0元</td></tr></tfoot>
+                            </table>
+                            <div class="up" onclick='up("pop5")'>
+                            	<div>
+                            		<img src="../static/images/up.png">
+                                </div>
+                            	<a>收起</a>
+                            </div>
+                       </div>
+                    </div>
+                </div>
+                </div>
+            
 		</div>
+		
         
         
         <div id="record">
@@ -271,13 +380,28 @@
                     <td colspan="4"></td>
                 </tfoot>
             </tbody>
+          
+            </table>
+            
+            <table>
+            <tr><td id="flag">{{ news }}</td><td>{{ session.name }}</td></tr>
             </table>
         </div>
-
+		
 
 	</body>
     </form>
     <script>
+		var newsflag = parseInt($("#flag").text());
+		
+		if(newsflag == 1){
+			
+			$("#background").css("visibility","visible");
+			
+		}
+		else{
+			$("#background").css("visibility","hidden");
+		}
 	//初始化项目
 		{% for fruit in fruits %}
 			$("tr.Recf{{ fruit[0] }} td.RecI").text("{{ fruit[1] }}");
@@ -286,9 +410,17 @@
 			$("tr.Recf{{ fruit[0] }} td.RecC").text("0元");
 		{% endfor %}
 			$("#record").css("display","none");
+			$(".note").fadeOut(1);
+			$("#explain").fadeOut(1);
+			$("#olyno").fadeOut(1);
 			
-		  
-	  
+			function fadeinoly(){
+				$("#olyno").fadeIn(100);
+			}
+			function fadeoutoly(){
+				$("#olyno").fadeOut(100);
+			}
+			
 	
 	</script>
 </html>

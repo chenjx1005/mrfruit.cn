@@ -31,7 +31,7 @@
 					{% elif session.campus=="xx" %}
 					<td>西溪{{ session.building }}{{ session.room }}</td>
 					{% endif %}</li>
-						<li class="menu_li">订单总计：{{ total_fee }}元<a>（其中之前未付款：{{ session.money }}元）</a></li>
+						<li class="menu_li">订单总计：{{ total_fee }}元<a href="/history">（除此之外，您还有{{ session.money }}元未付哦~）</a></li>
 					</ul>
 				</div>
 				<div id="submit">
@@ -39,7 +39,7 @@
 						{{ payhtml|safe }}
 						<!--li class="sub_li">
                     	<button class="test" id="btn_go">确认无误，去付款！</button></li>
-                        <li class="sub_li"><button class="test" id="btn_later" type=submit onclick="javascript:this.form.action='/nopay'" >以后再付</button></li-->
+                        <li class="sub_li"><button class="test" id="btn_later" type=submit onclick="javascript:this.form.action='/nopay'" >以后再付</button><li class="sub_li"><button class="test" id="btn_rtn" type=submit onclick="javascript:window.location.href='/'" >以后再付</button></li-->
                     </ul>	
 				</div>
 				

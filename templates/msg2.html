@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 <meta charset="UTF-8" >
 <style type="text/css" >
 html, body, h1, form, fieldset, legend, ol, li {
@@ -43,8 +43,8 @@ form#payment textarea {
 	font: italic 13px Georgia, "Times New Roman", Times, serif;
 	outline: none;
 	padding: 5px;
-	width: 300px;
-	height:200px;
+	width: 400px;
+	height:50px;
 }
 
 
@@ -54,17 +54,17 @@ form#payment textarea:focus {
 
 form#payment button {
 	
-	background: #e17022;
+	background: #FFF;
 	border: none;
-	color: #ffffff;
+	color: #e17022;
 	display: block;
 	font: "黑体";
 	margin: auto;
-	padding: 7px 25px;
+	padding: 0px 0px;
 	text-shadow: 0 1px 1px #cccccc;
 }
 form#payment button:hover {
-	background: #1e2506;
+	background: #FFF;
 	cursor: pointer;
 }
 
@@ -74,54 +74,119 @@ p{
 	
 }
 
-table tr td {
-	width: 100px;
-}
-#fruit{
-	color: #e17022;
-	text-decoration:none;
-	font-weight: bold;
+table#btn {
+	margin-left:300px;
 }
 
+table#btn tr td {
+	width: 30px;
+}
+
+a{
+	text-decoration:none;
+}
+
+table#chat{
+	width:400px;
+	font-size:13px;
+	color:#999999;
+	line-height:18px;
+	margin-top:20px;
+}
+
+table#chat table{
+	padding:10px 10px 0px 0px;
+	//background-color:#eeeeee;
+}
+
+table#chat table.fruit{
+	margin-left:40px;
+	padding:10px 10px 10px 10px;
+	//background-color:#eeeeee;
+}
+
+table#chat table.fruit tr td.name{
+	width:50px;
+}
+table#chat table.me tr td.name{
+	width:20px;
+}
+table#chat table tr td.name{
+	color: #e17022;
+}
+table#chat table tr td.time{
+	color: #cccccc;
+}
 
 
 </style>
-<title>注册才能吃水果哦~</title>
+<title>和水果君聊聊吧~</title>
 <body>
 <div id="da">
 
-{% for message in get_flashed_messages() %}
-      			<div class=flash>{{message}}</div>
-    		{% endfor %}
-
-<p id="title">热爱水果君的亲：</p>
+<p id="title">和水果君聊天：</p>
 
 
-<form id=payment action="{{ url_for('newmsg')}}" method="POST">
+<form id=payment action="{{ url_for('newmsg')}}" method="POST"><!--newnew-->
 	<fieldset>
     	<p>
-        	这里的留言也许不会得到即时回复，<br/><br/>但是每一条反馈都将登记在案，<br/><br/>你的支持是水果君前进的不竭动力。<br/><br/><br/><br/>你还想吃什么其他的水果？<br/><br/>有什么话想对水果君说？<br/><br/>
-
+        	你还想吃什么其他的水果？有什么话想对水果君说？<br/><br/>
         </p>
-        <p>互动交流及更多信息<br/><br/>请关注人人公共主页：<br/><br/>（猛戳右边-->）<a id="fruit" href="http://page.renren.com/601612744/index">水果君</a>
-
-</p>
     </fieldset>
 	<fieldset>
 		<textarea id="txt" name="txt" autofocus></textarea>
 	</fieldset>
 	<fieldset>
-    	<br/>
-        <br/>
-        <br/>
-        <table>
+    	
+        <table id="btn">
         	<tr>
             	<td></td>
                 <td><button type=submit>提交</button></td>
                 <td><a style="text-decoration:none" href="{{url_for('order')}}"><button type=button onclick="javascript:window.location.href='/'">返回</button></a></td>
             </tr>
         </table>
-	
+		
+        
+	</fieldset>
+    <fieldset >
+		{% for i in row %}
+    	<table id="chat">
+        	<tr>
+            	<td>
+                	<table class="me">
+                    	<tr>
+                        	<td class="name">我 
+                            </td>
+                            <td class="time">{{ i[0] }}
+                            </td>
+                        </tr>
+                        <tr>
+                        	<td class="words" colspan="2">{{ i[1] }}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+			{% if i[2] %}
+            <tr>
+            	<td>
+                	<table class="fruit">
+                    	<tr>
+                        	<td class="name">水果君
+                            </td>
+                            <td class="time">{{ i[2] }}
+                            </td>
+                        </tr>
+                        <tr>
+                        	<td class="words" colspan="2">{{ i[3] }}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+			{% endif %}
+        </table>
+		{% endfor %}
         
 	</fieldset>
 </form>

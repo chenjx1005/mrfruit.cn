@@ -18,7 +18,7 @@ import time
 PATH='/home/mrfruit/fruit/'
 DATABASE = PATH+'data.db'#数据库位çﾽ?
 DEBUG = True
-SECRET_KEY = 'test'
+SECRET_KEY = '\xf1\x8e\x91\x17\xbb\xef\x94\xd2\xe4\x96\x8f\x13A\x03\xbc\x1d\xeb\xd9\xe8\x8e\xe3\xed\xed\xe5'
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -46,6 +46,7 @@ alipayTool=alipay.alipay(
 
 @app.route('/log', methods=['GET', 'POST'])
 def log():
+	return render_template("sorry.html")
 	error = None
 	if request.method == 'POST':
 		
@@ -53,8 +54,8 @@ def log():
 		cur=g.db.execute('select tel,id,name,campus,building,room,score,mail from users where tel="'+phone+'"')
 		row=cur.fetchall()
 		if not row==[]:
-			#if request.form['stuid'] != str(row[0][1]):
-			if request.form['stuid'] != "000123":
+			if request.form['stuid'] != str(row[0][1]):
+			#if request.form['stuid'] != "000123":
 				error = 'wrong id'
 			else:
 				session['logged_in'] = True
@@ -119,14 +120,17 @@ def changeadd():
 
 @app.route('/',methods=['GET', 'POST'])
 def order():
+	return render_template("sorry.html")
 	if not session.get('logged_in'):
         	return redirect(url_for('log'))
-	cur=g.db.execute('select score from users where tel=?',[session['phone']])
-	session['score']=cur.fetchone()[0]
-	a=session['score']
+	cur=g.db.execute('select score,news from users where tel=?',[session['phone']])
+	session['score'],news=cur.fetchall()[0]
 	cur=g.db.execute('select * from fruits order by f_id')
+	if news==1:
+		g.db.execute('update users set news=0 where tel=?',[session['phone']])
+		g.db.commit()
 	fruits=cur.fetchall()
-	return render_template("order.html",fruits=fruits)
+	return render_template("order.html",fruits=fruits,news=news)
 
 @app.route('/reg',methods=['GET', 'POST'])
 def reg():
@@ -136,8 +140,8 @@ def reg():
 			building+=request.form['address22']
 		building+="舍"
 		try:
-			g.db.execute('insert into users values (?,?,?,?,0,?,?,?,0)',[request.form['phone'],request.form['stuid'],request.form['name'],
-			request.form['email'],request.form['address'],request.form['address2'],request.form['address3']])
+			g.db.execute('insert into users values (?,?,?,?,0,?,?,?,0,0)',[request.form['phone'],request.form['stuid'],request.form['name'],
+			request.form['email'],request.form['address'],building,request.form['address3']])
 			g.db.commit()
 		except :
 			flash('phone number existed')
@@ -196,30 +200,61 @@ def history():
 				p=p+j[3]*j[4]
 			price.append(p)
 			row.append(r)
+	else:
+		cur=g.db.execute("select time from orders where re=1 and numbers>0 and tel=? group by time order by time desc",[session['phone']])
+		time=cur.fetchall()
+		
+		if time==[]:
+			flash("您还没有订单～")
+		
+		for i in time:
+			cur=g.db.execute("select time,weekday,f_name,sum(numbers),price,id,1 from orders where re=1 and numbers>0 and tel=? and time=? group by f_name",[session['phone'],i[0]])
+			r=cur.fetchall()
+			p=0
+			for j in r:
+				p=p+j[3]*j[4]
+			price.append(p)
+			row.append(r)
 		#raise RuntimeError
 	return render_template("history.html",row=row,price=price)
 	
-@app.route('/history1',methods=['POST'])
+@app.route('/history1',methods=['GET','POST'])
 def history1():
 	row=[]
 	price=[]
-	time1,time2=request.form['time1'].replace('/','-'),request.form['time2'].replace('/','-')
-	time1=time1[6:]+'-'+time1[0:5]
-	time2=time2[6:]+'-'+time2[0:5]
-	cur=g.db.execute("select id from orders where re=1 and numbers>0 and tel=? and buytime>=? and buytime<=? group by id order by buytime desc",[session['phone'],time1,time2])
-	id=cur.fetchall()	
-		
-	if id==[]:
-		flash("您查询的日期内没有订单～")
+	if request.method=="POST":
+		time1,time2=request.form['time1'].replace('/','-'),request.form['time2'].replace('/','-')
+		time1=time1[6:]+'-'+time1[0:5]
+		time2=time2[6:]+'-'+time2[0:5]
+		cur=g.db.execute("select id from orders where re=1 and numbers>0 and tel=? and buytime>=? and buytime<=? group by id order by buytime desc",[session['phone'],time1,time2])
+		id=cur.fetchall()	
+			
+		if id==[]:
+			flash("您查询的日期内没有订单～")
 
-	for i in id:
-		cur=g.db.execute("select buytime,weekday,f_name,numbers,price,id,pay from orders where re=1 and numbers>0 and tel=? and id=?",[session['phone'],i[0]])
-		r=cur.fetchall()
-		p=0
-		for j in r:
-			p=p+j[3]*j[4]
-		price.append(p)
-		row.append(r)
+		for i in id:
+			cur=g.db.execute("select buytime,weekday,f_name,numbers,price,id,pay from orders where re=1 and numbers>0 and tel=? and id=?",[session['phone'],i[0]])
+			r=cur.fetchall()
+			p=0
+			for j in r:
+				p=p+j[3]*j[4]
+			price.append(p)
+			row.append(r)
+	else:
+		cur=g.db.execute("select id from orders where re=1 and numbers>0 and tel=? group by id order by buytime desc",[session['phone']])
+		id=cur.fetchall()
+			
+		if id==[]:
+			flash("您还没有订单～")
+
+		for i in id:
+			cur=g.db.execute("select buytime,weekday,f_name,numbers,price,id,pay from orders where re=1 and numbers>0 and tel=? and id=?",[session['phone'],i[0]])
+			r=cur.fetchall()
+			p=0
+			for j in r:
+				p=p+j[3]*j[4]
+			price.append(p)
+			row.append(r)
 	return render_template("history.html",row=row,price=price)
 	
 	
@@ -320,8 +355,14 @@ def test():
 	f=request.form
 	rlt=alipayTool.notifiyCall(f,verify=True)
 	if rlt=='success':
-		g.db.execute('update orders set re=1 and pay=1 where tel=?',[f['receive_mobile']])
-		#g.db.execute('update users set score=score+? where tel=?',[int(float(f['total_fee'])*10),f['receive_mobile']])
+		total=0
+		ids=g.db.execute('select id from orders where tel=? and pay=0 group by id',[f['receive_mobile']]).fetchall()
+		for id in ids:
+			fee=g.db.execute('select sum(numbers*price) from orders where id=?',[id[0]]).fetchall()[0][0]
+			if fee>=10:
+				total+=fee
+		g.db.execute('update users set score=score+? where tel=?',[int(total/10),f['receive_mobile']])
+		g.db.execute('update orders set re=1,pay=1 where tel=?',[f['receive_mobile']])
 		g.db.commit()
 	return rlt
 
@@ -406,6 +447,27 @@ def excel2():
 	file.save(PATH+'static/2_user_position_fruit.xls')
 	return '<a href="/static/2_user_position_fruit.xls">下载</a>'
 	
+@app.route('/exceloreal')
+def exceloreal():
+	if not session.get('admin'):
+		return redirect(url_for('adminlog'))
+	#表格2
+	cur=g.db.execute('select users.tel,name,f_name,numbers from users inner join orealorders on users.tel=orealorders.tel where re=1 and numbers>0 order by name')
+	row=cur.fetchall()
+	file = xlwt.Workbook(encoding="utf-8") 
+	sheet = file.add_sheet('sheet1',cell_overwrite_ok=True)
+	sheet.write(0,0,"电话")
+	sheet.write(0,1,"姓名")
+	sheet.write(0,2,"产品")
+	sheet.write(0,3,"数量")	
+	p=1
+	for i in row:
+		for j in (range(4)):
+			sheet.write(p,j,i[j])
+		p=p+1
+	file.save(PATH+'static/oreal.xls')
+	return '<a href="/static/oreal.xls">下载</a>'
+	
 @app.route('/excel3')
 def excel3():
 	if not session.get('admin'):
@@ -417,7 +479,7 @@ def excel3():
 	sheet.write(0,0,"校区")
 	sheet.write(0,1,"水果")
 	sheet.write(0,2,"数量")
-	sheet.write(0,2,"时间")
+	sheet.write(0,3,"时间")
 	p=1
 	for i in row:
 		for j in (range(4)):
@@ -561,28 +623,25 @@ def doreceive(id):
 	g.db.commit()
 	return redirect(url_for("showreceive"))
 	
+@app.route('/rootadd',methods=['GET','POST'])
+def rootadd():
+	f_list=g.db.execute("select f_id,f_name,price from fruits").fetchall()
+	if request.method=='POST':
+		f_name,price=f_list[int(request.form['f_id'])-1][1:]
+		setime=request.form['time']
+		weekday=date.isoweekday(date(int(setime[0:4]),int(setime[5:7]),int(setime[8:10])))
+		no=request.form['tel']+time.strftime('%Y%m%d%H%M%S',time.localtime(time.time()))
+		g.db.execute("insert into orders (id,tel,f_id,numbers,time,re,f_name,price,pay,weekday) values (?,?,?,?,?,?,?,?,?,?)",[no,request.form['tel'],request.form['f_id'],request.form['numbers'],request.form['time'],1,f_name,price,1,weekday])
+		g.db.commit()
+		flash("添加成功")
+	return render_template("rootadd.html",f_list=f_list)
+	
+	
+	
 @app.route('/adminlogout')
 def adminlogout():
 	session.pop('admin', None)
 	return redirect(url_for('adminlog'))
-
-@app.route('/mail_to_users')
-def mailtousers():
-	cur=g.db.execute('select tel,mail from users')
-	row=cur.fetchall()
-	for i in row:
-		sendmail(i)
-	flash('this week orders mails finished~')
-	return redirect(url_for('admin'))
-@app.route('/mail_tomorrow')
-def tomorrow():
-	cur=g.db.execute('select tel,mail from users')
-	row=cur.fetchall()
-	for i in row:
-		sendmailto(i)
-	flash('tomorrow orders mails finished~')
-	return redirect(url_for('admin'))
-
 	
 if __name__ == '__main__':
     app.debug=True

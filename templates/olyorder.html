@@ -1,0 +1,292 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="description" content="水果君,MrFruit" />
+		<meta name="keywords" content="水果君,MrFruit" />
+		<link rel="alternate" type="application/rss+xml" title="RSS 2.0 - all posts" href="http://mrfuit.com/feed/" />
+		<title>水果君列表</title>
+		<link rel="stylesheet" type="text/css" media="all" href="../static/css/olyindex.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="../static/css/olyheader.css" />
+		<link rel="shortcut icon" href="../static/favicon.ico">
+		<script src="../static/js/olyorder.js"></script>
+        <script src="../static/js/jquery-1.9.1.js"></script>
+	</head>
+	<body onload="init()">
+	<form action="{{ url_for('oreal_re') }}" method="POST">
+		<div id="top">
+			<div id="header">
+				
+				<div id="logo">
+					<a href="#"><img src="../static/images/oly/logo.png" \></a>
+				</div>
+				
+				<div id="menu">
+					<ul>
+                    	<li class="menu_li menu_big"><a>水果君爱你，{{ session.name }}</a></li>
+						<li class="menu_li menu_small"><a href="/logout">退出登陆</a></li>
+						<li class="menu_li menu_small"><a href="{{url_for('edit')}}">修改资料</a></li>
+                        <li class="menu_li"><a onmouseover="explainIn();" onmouseout="explainOut();">积分：{{ session.score }}分</a></li>
+                        <li class="menu_li menu_small"><a onmouseover="explainIn();" onmouseout="explainOut();">积分规则是什么？</a></li>
+                        
+					</ul>
+				</div>	
+                
+                <div id="explain">
+                    <p>亲们~每一次提交订单每满10元即可积1分（也就是说10元以下没有积分哦，不论11元还是19元都可以拿到1分！20元就可以拿2分啦！）<br/></p>
+                    <p>有人问，积分能干什么？水果君正在为大家准备丰厚的积分换礼，敬请期待！~</p>
+                </div>
+				
+                <div id="navi">
+                	<ul>
+                    	<li class="menu_li"><a href="{{url_for('lorealhistory')}}">历史订单</a></li>
+                        
+						<li class="menu_li"><a href="{{ url_for('questions') }}" target="_blank">预购说明</a></li>
+                        <li class="menu_li"><a href="http://page.renren.com/601612744" target="_blank">加我人人</a></li>
+                       
+                    </ul>
+                </div>
+				
+				<div id="submit">
+                	<button type="button" id="backtofruit" onclick="javascript:window.location.href='/'">返回水果君</button>
+					<button id="test">提交订单</button>
+				</div>
+                
+				
+			</div>
+            
+		</div>
+    
+		<div class="render"></div>
+        <div id="main">
+		<div class="content">
+        	<div class="heng"><h3>巴黎欧莱雅L'Oreal Paris</h3></div>
+        	<div class="cnt_fruits">
+            {% for fruit in fruits[0:16] %}
+                <div class="for_sale">
+                    <img class="pic_fr" src="../static/images/oly/0{{ fruit[0] }}.jpg">
+                    <div class="sale_word">
+                        <p class="p_title">{{ fruit[1] }}</p>
+                    </div>
+                    <div class="sale_price">
+                    	<p class="p_normal" style="color:#F69;margin-top:-3px;">余量：<span class="left">{{ fruit[4] }}</span>/{{ fruit[5] }}</p>
+                        <p class="p_normal">义卖价：{{ fruit[2] }}元</p>
+                        <p class="p_normal">市场价：{{ fruit[3] }}元</p>
+                        
+                    </div>				
+                    
+                    <div class="blank"></div>
+                    {% if fruit[4] > 0 %}
+                     
+                    
+                    <div class="drop_in" onclick="addToBascket('f{{ fruit[0] }}',1)">
+                        <button type="button">放进爱心篮</button>
+                    </div>
+                    {% elif fruit[4] == 0 %}
+                        <div class="drop_in">
+                        <button type="button" style="background:#CCC;">sorry~已售完</button>
+                    </div>
+                    {% endif %}
+                    
+               </div>
+			{% endfor %}
+			   
+			   
+               
+               
+            </div> 
+         </div>
+         <div class="content"> 
+            <div class="heng"><h3>美宝莲Maybelline</h3></div>
+        	<div class="cnt_fruits">
+				{% for fruit in fruits[16:25] %}
+            	<div class="for_sale">
+                    <img class="pic_fr" src="../static/images/oly/0{{ fruit[0] }}.jpg">
+                    <div class="sale_word">
+                        <p class="p_title">{{ fruit[1] }}</p>
+                    </div>
+                    <div class="sale_price">
+                    	<p class="p_normal" style="color:#F69;margin-top:-3px;">余量：<span class="left">{{ fruit[4] }}</span>/{{ fruit[5] }}</p>
+                        <p class="p_normal">义卖价：{{ fruit[2] }}元</p>
+                        <p class="p_normal">市场价：{{ fruit[3] }}元</p>
+                        
+                    </div>				
+                    
+                    <div class="blank"></div>
+                    
+                    {% if fruit[4] > 0 %}
+                     
+                    
+                    <div class="drop_in" onclick="addToBascket('f{{ fruit[0] }}',1)">
+                        <button type="button">放进爱心篮</button>
+                    </div>
+                    {% elif fruit[4] == 0 %}
+                        <div class="drop_in">
+                        <button type="button" style="background:#CCC;">sorry~已售完</button>
+                    </div>
+                    {% endif %}
+               </div>
+			   {% endfor %}
+            </div>
+         </div>
+         
+         <div class="content"> 
+            <div class="heng"><h3>薇姿Vichy</h3></div>
+        	<div class="cnt_fruits">
+            	{% for fruit in fruits[25:27] %}
+            	<div class="for_sale">
+                    <img class="pic_fr" src="../static/images/oly/0{{ fruit[0] }}.jpg">
+                    <div class="sale_word">
+                        <p class="p_title">{{ fruit[1] }}</p>
+                    </div>
+                    <div class="sale_price">
+                    	<p class="p_normal" style="color:#F69;margin-top:-3px;">余量：<span class="left">{{ fruit[4] }}</span>/{{ fruit[5] }}</p>
+                        <p class="p_normal">义卖价：{{ fruit[2] }}元</p>
+                        <p class="p_normal">市场价：{{ fruit[3] }}元</p>
+                        
+                    </div>				
+                    
+                    <div class="blank"></div>
+                    {% if fruit[4] > 0 %}
+                     
+                    
+                    <div class="drop_in" onclick="addToBascket('f{{ fruit[0] }}',1)">
+                        <button type="button">放进爱心篮</button>
+                    </div>
+                    {% elif fruit[4] <= 0 %}
+                        <div class="drop_in">
+                        <button type="button" style="background-color:#CCC;">sorry~已售完</button>
+                    </div>
+                    {% endif %}
+                    
+               </div>
+			   {% endfor %}
+            </div>
+         </div>
+         
+         <div class="content"> 
+            <div class="heng"><h3>理肤泉La Roche-Posay</h3></div>
+        	<div class="cnt_fruits">
+            	{% for fruit in fruits[27:29] %}
+            	<div class="for_sale">
+                    <img class="pic_fr" src="../static/images/oly/0{{ fruit[0] }}.jpg">
+                    <div class="sale_word">
+                        <p class="p_title">{{ fruit[1] }}</p>
+                    </div>
+                    <div class="sale_price">
+                    	<p class="p_normal" style="color:#F69;margin-top:-3px;">余量：{{ fruit[4] }}/{{ fruit[5] }}</p>
+                        <p class="p_normal">义卖价：{{ fruit[2] }}元</p>
+                        <p class="p_normal">市场价：{{ fruit[3] }}元</p>
+                        
+                    </div>				
+                    
+                    <div class="blank"></div>
+                    
+                    <div class="drop_in" onclick="addToBascket('f{{ fruit[0] }}',1)">
+                        <button type="button">放进爱心篮</button>
+                    </div>
+                    
+               </div>
+			   {% endfor %}
+            </div>
+         </div>
+            
+            
+            
+            
+            
+            <div id="cnt_cmt">
+            	<div id="cmt_h"><p></p></div>
+				<div id="cmt_p">
+                	
+				</div>
+            </div>
+            <div id="space">
+              <p>copyright ©2013 Mrfruit.cn 版权所有</p></div>
+        </div>
+        </div><!--main-->
+         <div id="background" onclick="fade();">
+            <div id="notice">
+                <img src="../static/images/olylog.png">
+            </div>
+        </div>
+        
+        
+        <div id="foot">
+            <div id="baskets">
+           
+                    
+                	<div class="top_date" onclick='clickOn("date1")'  style="margin-left: 385px;">
+                        <div class="img_date">
+                            <img id="date1" src="../static/images/oly/olyblank_basket_focus.png" \>
+                        </div>
+                       
+                    </div>
+                  
+            
+            
+            <div id="pops">
+       
+                     <div id="pop1" class="popover fade bottom in" style="margin-left: 185px;">
+                        
+                        <div id="pop11" class="popover-content">
+                            <table id="pop1_table">
+                                <tfoot><tr><td colspan="4">总计：0元</td></tr></tfoot>
+                            </table>
+                            <div class="up" onclick='up("pop1")'>
+                            	<div>
+                            		<img src="../static/images/oly/up.png">
+                                </div>
+                            	<a>收起</a>
+                            </div>
+                        </div>
+                       
+                    </div>
+             
+                </div>
+                </div>
+            
+		</div>
+		
+        
+        
+        <div id="record">
+            <table id="Recdate1">
+                <tbody>
+				{% for i in fruits %}
+                <tr class="Recf{{ i[0] }}">
+                    <td class="RecI"></td>
+                    <td class="RecP"></td>
+                    <td class="RecQ"></td>
+                    <td class="RecC"></td>
+                </tr>
+               {% endfor %}
+                <tfoot class="total">
+                    <td colspan="4"></td>
+                </tfoot>
+            </tbody></table>
+            
+       
+       
+        </div>
+		
+
+	</body>
+    </form>
+    <script>
+		
+			{% for fruit in fruits %}
+			$("tr.Recf{{ fruit[0] }} td.RecI").text("{{ fruit[1] }}");
+			$("tr.Recf{{ fruit[0] }} td.RecP").text("{{ fruit[2] }}");
+			$("tr.Recf{{ fruit[0] }} td.RecQ").text("0");
+			$("tr.Recf{{ fruit[0] }} td.RecC").text("0元");
+		{% endfor %}
+			$("#record").css("display","none");
+			$(".note").fadeOut(1);
+			$("#explain").fadeOut(1);
+			
+		  	
+	  
+	
+	</script>
+</html>
